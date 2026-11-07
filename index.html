@@ -1,0 +1,1362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Behind the Margins</title>
+<meta name="description" content="Behind the Margins is a student-led podcast from Kuala Lumpur exploring how businesses really make money, through conversations with founders, CEOs and business leaders.">
+<meta name="theme-color" content="#15110D">
+<link rel="canonical" href="https://behindthemargins.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Behind the Margins">
+<meta property="og:title" content="Behind the Margins: How Businesses Make Money">
+<meta property="og:description" content="A student-led podcast from Kuala Lumpur exploring business models, real numbers and real stories with founders and CEOs.">
+<meta property="og:url" content="https://behindthemargins.com/">
+<meta property="og:image" content="https://behindthemargins.com/covers/hero-wide-v2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: an exercise-book page in the show's gold-on-espresso colours. A gold margin rule runs down the left; marginal notes (and formulas) sit in the margin, the story sits on the page. */
+:root{
+  --paper:#15110D;
+  --sheet:#1E1914;
+  --sheet-2:#26201A;
+  --ink:#F4EEE3;
+  --ink-soft:#B4A996;
+  --line:#3A3129;
+  --gold:#F2C14E;
+  --gold-text:#F2C14E;
+  --gold-soft:#3B2F17;
+  --cost:#C98B5A;
+  --loss:#EE6A57;
+  --good:#7BC59A;
+  --on-gold:#1A140C;
+  --shade:13,10,7;
+  --f-display:"Playfair Display", "Didot", Georgia, serif;
+  --f-body:"Figtree", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-data:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --margin-col: 190px;
+  color-scheme:dark;
+}
+/* Single dark theme by choice: it matches the show artwork. */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:30;background:var(--paper)}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:rgba(var(--shade),.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:.85rem}
+.mark{font-family:var(--f-display);font-weight:900;font-size:1.05rem;text-decoration:none;display:flex;align-items:center;gap:.55rem;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+.mark .the{color:var(--gold-text)}
+.nav{display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none;min-width:0}
+.nav::-webkit-scrollbar{display:none}
+.nav a{text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.74rem;text-transform:uppercase;letter-spacing:.15em;padding:.5rem .7rem;border-radius:999px;white-space:nowrap}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--on-gold);background:var(--gold)}
+
+/* ---------- page with margin rule ---------- */
+.page{position:relative;padding-block:0 3rem}
+.page::before{content:"";position:absolute;top:0;bottom:0;left:calc(max(16px, env(safe-area-inset-left, 0px)) + var(--margin-col) + 18px);width:1px;background:var(--gold);opacity:.4;pointer-events:none}
+.row{display:grid;grid-template-columns:var(--margin-col) minmax(0,1fr);gap:0 36px}
+.margin{font-size:.78rem;line-height:1.5;color:var(--ink-soft);text-align:right;padding-top:.5rem}
+.margin b{display:block;color:var(--gold-text);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;margin-bottom:.3rem}
+.margin code{font-family:var(--f-data);font-size:.72rem;color:var(--ink);display:block;margin-top:.4rem;line-height:1.55}
+.main{min-width:0}
+section{padding-block:3.5rem;border-top:1px solid var(--line)}
+section.first{border-top:0}
+.label{font-weight:600;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+h1,h2,h3{text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,4.4vw,3rem);line-height:1.02;margin:0 0 1rem}
+h3{font-family:var(--f-display);font-weight:800;font-size:1.3rem;line-height:1.15;margin:0}
+.prose{max-width:62ch;color:var(--ink-soft)}
+.prose p{margin:0 0 1rem}
+.prose strong{color:var(--ink);font-weight:600}
+.page-head{padding-block:3.5rem 2.5rem}
+.page-head h1{font-family:var(--f-display);font-weight:900;font-size:clamp(2.6rem,6.5vw,4.6rem);line-height:.95;margin:0 0 1rem}
+.page-head h1 .g{color:var(--gold-text)}
+.page-head p{max-width:56ch;color:var(--ink-soft);font-size:1.15rem;margin:0}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-weight:700;font-size:.92rem;padding:.72rem 1.2rem;border-radius:999px;background:var(--gold);color:var(--on-gold);text-decoration:none;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--gold);filter:none}
+.btn[aria-disabled="true"],.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.soon{font-size:.85rem;color:var(--ink-soft)}
+
+/* ---------- home hero band ---------- */
+.band{position:relative;background:var(--paper);isolation:isolate}
+.band::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(90deg, rgba(var(--shade),.94) 0%, rgba(var(--shade),.82) 38%, rgba(var(--shade),.35) 75%, rgba(var(--shade),.2) 100%),
+  linear-gradient(0deg, var(--paper) 0%, rgba(var(--shade),0) 28%)}
+.band .wrap{padding-block:2rem 3rem}
+.hero{max-width:56rem}
+.hero-full{max-width:none;display:flex;flex-direction:column;align-items:center;gap:1.4rem}
+.art{position:relative;width:100%;container-type:inline-size}
+.art .hero-img{width:100%;border-radius:0;border:0;box-shadow:none}
+.band:has(.hero-full) > .wrap{max-width:none;padding:0}
+.band:has(.hero-full)::before{display:none}
+.band:has(.hero-full){background:var(--paper)}
+.hero-full{gap:0}
+.cta.art-cta{padding:1.25rem max(16px, env(safe-area-inset-right, 0px)) 2rem max(16px, env(safe-area-inset-left, 0px))}
+.art-pill{position:absolute;left:30%;width:40%;top:91%;height:7.4%;border-radius:999px;background:linear-gradient(180deg,#FFD978,#F2B93B);color:#1A140C;display:flex;align-items:center;justify-content:center;gap:1.2cqw;box-shadow:0 .4cqw 1.4cqw rgba(0,0,0,.45);text-align:center}
+.art-pill svg{width:1.9cqw;height:1.9cqw;flex:none}
+.art-pill span{font-weight:800;text-transform:uppercase;font-size:1.32cqw;line-height:1.15;letter-spacing:.02em}
+.art-btn{position:absolute;top:94.7%;transform:translateY(-50%);white-space:nowrap;font-size:clamp(.78rem,1.15cqw,1.3rem);padding:.75em 1.3em;box-shadow:0 .4cqw 1.6cqw rgba(0,0,0,.5)}
+.art-left{left:2%}
+.btn.art-right{right:2%;background:rgba(var(--shade),.85);border-color:rgba(244,238,227,.5)}
+.cta.art-cta{display:none;margin:0;justify-content:center}
+@media (max-width: 760px){ .btn.art-btn{display:none} .cta.art-cta{display:flex} }
+.hero-art{max-width:none;display:grid;grid-template-columns:minmax(0,34rem) minmax(0,1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.hero-img{width:100%;height:auto;border-radius:8px;display:block;box-shadow:0 24px 60px -20px rgba(0,0,0,.7);border:1px solid rgba(244,238,227,.12)}
+.hero-copy{display:flex;flex-direction:column;gap:1rem;min-width:0}
+.hero-copy .lede{margin:0}
+.hero-copy .cta{margin-top:.5rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hero h1{font-family:var(--f-display);font-weight:900;font-size:clamp(3.2rem, 8.4vw, 6.6rem);line-height:.88;letter-spacing:-.01em;margin:0;text-transform:uppercase}
+.hero h1 .g{color:var(--gold-text);display:block;white-space:nowrap}
+.wave{display:flex;align-items:center;gap:.9rem;margin:1.4rem 0 .9rem;max-width:34rem}
+.wave::before,.wave::after{content:"";height:1px;background:var(--ink-soft);opacity:.5;flex:1}
+.subtitle{font-family:var(--f-display);font-weight:700;font-size:clamp(1.3rem,2.8vw,1.9rem);line-height:1.15;margin:0}
+.tagline{display:flex;flex-wrap:wrap;gap:.35rem .9rem;margin-top:1rem}
+.tagline span+span::before{content:"|";margin-right:.9rem;color:var(--gold-text)}
+.lede{font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.45;max-width:30ch;margin:1.6rem 0 0}
+.lede em{font-style:normal;color:var(--gold-text)}
+.cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem;align-items:center}
+
+.about-grid{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:2rem;align-items:start;margin-top:.5rem}
+.show-art{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block}
+
+/* episode cards (home) */
+.eps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem 2rem;margin-top:1.75rem}
+.ep-card{display:flex;flex-direction:column;gap:.75rem;min-width:0;text-decoration:none}
+.ep-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block;border:1px solid var(--line);transition:transform .3s ease}
+.ep-card:hover img{transform:translateY(-3px)}
+.ep-no{display:inline-flex;align-self:flex-start;align-items:center;gap:.4rem;background:var(--gold);color:var(--on-gold);font-weight:700;font-size:.78rem;padding:.25rem .7rem;border-radius:999px}
+.ep-tags{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .8rem}
+.rel{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;font-weight:600;color:var(--ink)}
+.rel .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none}
+.rel.out .dot{background:var(--good)}
+.guest{font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);line-height:1.5}
+.ep-card p{margin:0;color:var(--ink-soft);font-size:.98rem;line-height:1.5}
+.ep-card .more{margin-top:auto;font-size:.85rem;font-weight:600;color:var(--ink)}
+.stars-inline{font-size:.85rem;color:var(--ink-soft)}
+.stars-inline b{color:var(--gold-text);letter-spacing:.08em}
+
+.steps{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.steps li{background:var(--sheet);padding:1.2rem 1.1rem 1.35rem;display:flex;flex-direction:column;gap:.4rem}
+.steps .n{font-family:var(--f-data);font-size:.72rem;letter-spacing:.1em;color:var(--gold-text)}
+.steps h3{font-size:1.1rem}
+.steps p{margin:0;font-size:.95rem;color:var(--ink-soft);line-height:1.45}
+
+.items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2.5rem;margin-top:1.25rem}
+.item{padding-block:1.2rem;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.3rem 1rem}
+.item .sym{font-family:var(--f-data);font-size:.78rem;color:var(--gold-text);padding-top:.3rem}
+.item p{margin:0;grid-column:1 / -1;color:var(--ink-soft);font-size:.98rem;line-height:1.5}
+.aud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;margin-top:1.5rem}
+.aud h3{margin-bottom:.4rem}
+.aud p{margin:0;color:var(--ink-soft);font-size:.98rem;line-height:1.5}
+.hosts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:1.75rem}
+.host{display:flex;flex-direction:column;gap:.55rem}
+.avatar{aspect-ratio:971/1619;max-width:100%;border-radius:6px;background:var(--gold-soft);display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:2.6rem;color:var(--gold-text)}
+.avatar.photo{width:100%;object-fit:cover;object-position:center top;background:#fff;display:block}
+.host .nm{font-family:var(--f-display);font-weight:800;font-size:1.15rem;line-height:1.2}
+.tbd{color:var(--ink-soft);font-family:var(--f-body);font-weight:400;font-size:.92rem;border-bottom:1px dashed var(--ink-soft)}
+.host .role{font-weight:600;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.cta-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.cta-strip a{background:var(--sheet);padding:1.4rem 1.25rem;text-decoration:none;display:flex;flex-direction:column;gap:.35rem}
+.cta-strip a:hover{background:var(--sheet-2)}
+.cta-strip p{margin:0;color:var(--ink-soft);font-size:.95rem}
+.cta-strip .go{color:var(--gold-text);font-weight:700;font-size:.85rem;margin-top:.4rem}
+
+/* ---------- episodes page ---------- */
+.episode{display:grid;grid-template-columns:minmax(0,18rem) minmax(0,1fr);gap:2.25rem;align-items:start}
+.episode .cover{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block}
+.episode .side{display:flex;flex-direction:column;gap:.9rem;position:sticky;top:calc(env(safe-area-inset-top, 0px) + 5rem)}
+.listen{display:flex;flex-direction:column;gap:.5rem}
+.listen .btn{justify-content:space-between;width:100%}
+.listen .btn small{font-weight:500;font-size:.75rem;opacity:.75}
+.ep-title{font-family:var(--f-display);font-weight:900;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.03;margin:.6rem 0 .5rem}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-size:.85rem;color:var(--ink-soft);margin:.6rem 0 1.4rem}
+.ep-body h4{font-weight:600;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);margin:1.8rem 0 .7rem}
+.ep-body p{color:var(--ink-soft);margin:0 0 1rem;max-width:62ch}
+.topics{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0}
+.topics li{display:grid;grid-template-columns:5.6rem minmax(0,1fr);gap:1rem;padding-block:.7rem;border-bottom:1px solid var(--line);font-size:.98rem}
+.topics li span:first-child{font-family:var(--f-data);font-size:.75rem;color:var(--gold-text);padding-top:.2rem}
+.tools-link{display:inline-flex;margin-top:1rem;font-weight:600;font-size:.9rem;color:var(--gold-text);text-decoration:none}
+
+.reviews{margin-top:2.2rem;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:clamp(1rem,3vw,1.75rem)}
+.rev-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.avg{display:flex;align-items:baseline;gap:.7rem}
+.avg .num{font-family:var(--f-display);font-weight:900;font-size:2.4rem;line-height:1;font-variant-numeric:lining-nums}
+.stars{color:var(--gold-text);letter-spacing:.12em;font-size:1rem}
+.stars .off{color:var(--line)}
+.rev-list{list-style:none;padding:0;margin:0}
+.rev-list li{padding-block:1rem;border-top:1px solid var(--line)}
+.rev-list .who{display:flex;flex-wrap:wrap;gap:.3rem .8rem;align-items:baseline;font-size:.9rem}
+.rev-list .who strong{font-weight:700}
+.rev-list .who time{color:var(--ink-soft);font-size:.8rem}
+.rev-list p{margin:.35rem 0 0;color:var(--ink-soft);font-size:.98rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.empty{color:var(--ink-soft);font-size:.95rem;padding-block:.6rem;margin:0}
+.rev-form{border-top:1px solid var(--line);margin-top:.5rem;padding-top:1.25rem;display:grid;gap:.9rem}
+.picker{display:flex;gap:.15rem}
+.picker button{background:none;border:0;cursor:pointer;font-size:1.7rem;line-height:1;padding:.1rem .15rem;color:var(--line)}
+.picker button.on{color:var(--gold)}
+.note{font-size:.85rem;color:var(--ink-soft);margin:0}
+.note.ok{color:var(--good)}
+.note.err{color:var(--loss)}
+
+/* ---------- forms ---------- */
+.field{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.field label,.field .lbl{font-size:.82rem;font-weight:600;color:var(--ink-soft)}
+.field input,.field textarea,.field select{width:100%;font:inherit;font-size:1rem;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:.65rem .75rem}
+.field textarea{min-height:7rem;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.25rem}
+
+/* ---------- tools ---------- */
+.tool-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:2rem}
+.tool-tabs button{background:var(--sheet);border:1px solid var(--line);border-radius:999px;padding:.55rem 1rem;font-weight:600;font-size:.88rem;cursor:pointer;color:var(--ink-soft)}
+.tool-tabs button[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.tool{display:block}
+.tool h2{margin-bottom:.6rem}
+.tool .intro{color:var(--ink-soft);max-width:62ch;margin:0 0 1.5rem}
+.panel{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:clamp(1rem,3vw,1.75rem)}
+.panel-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.tag{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border:1px dashed var(--line);padding:.25rem .55rem;border-radius:3px}
+.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem 2rem;margin-bottom:1.5rem}
+.controls.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.controls.four{grid-template-columns:repeat(4,minmax(0,1fr));gap:1.1rem 1.25rem}
+.ctl label{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;font-size:.85rem;color:var(--ink-soft);margin-bottom:.35rem}
+.ctl output{font-family:var(--f-data);font-size:1rem;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--gold);height:1.5rem}
+.num-in{display:flex;align-items:center;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+.num-in span{padding-left:.7rem;color:var(--ink-soft);font-family:var(--f-data);font-size:.85rem}
+.num-in input{flex:1;min-width:0;background:transparent;border:0;color:var(--ink);font-family:var(--f-data);font-size:1rem;padding:.6rem .7rem;font-variant-numeric:tabular-nums}
+.num-in input:focus{outline:none}
+.num-in:focus-within{border-color:var(--gold)}
+.results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:1.5rem}
+.results div{background:var(--sheet-2);padding:1rem 1.1rem}
+.results .k{font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.results .v{font-family:var(--f-display);font-weight:900;font-size:clamp(1.6rem,3.6vw,2.2rem);line-height:1.1;font-variant-numeric:lining-nums tabular-nums;margin-top:.2rem}
+.results .s{font-size:.82rem;color:var(--ink-soft)}
+.explain{margin:1.25rem 0 0;font-size:1rem;line-height:1.55;max-width:66ch}
+.chart{width:100%;height:auto;display:block;margin-top:1.25rem;overflow:visible}
+.chart text{font-family:var(--f-data);font-size:11px;fill:var(--ink-soft)}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .axis{stroke:var(--ink-soft);stroke-width:1;opacity:.6}
+.chart .l-rev{stroke:var(--gold);stroke-width:2.5;fill:none}
+.chart .l-cost{stroke:var(--cost);stroke-width:2.5;fill:none}
+.chart .a-profit{fill:var(--gold);opacity:.16}
+.chart .a-loss{fill:var(--loss);opacity:.14}
+.chart .pt{fill:var(--paper);stroke:var(--ink);stroke-width:2}
+.chart .pt-lbl{fill:var(--ink);font-weight:600}
+.chart .b-own{fill:var(--cost)}
+.chart .b-grow{fill:var(--gold)}
+.legend{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:.78rem;color:var(--ink-soft);margin-top:.8rem}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:.4rem;vertical-align:-1px}
+.chips{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.chips button{background:transparent;border:1px solid var(--line);border-radius:999px;padding:.35rem .8rem;font-size:.82rem;cursor:pointer;color:var(--ink-soft)}
+.chips button:hover,.chips button.on{border-color:var(--gold);color:var(--ink)}
+.chips .lbl{font-size:.82rem;color:var(--ink-soft);align-self:center;margin-right:.3rem}
+
+.ledger{font-family:var(--f-data);font-size:.8rem;font-variant-numeric:tabular-nums}
+.lrow{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr) 7.6rem;gap:.75rem;align-items:center;padding-block:.35rem}
+.lrow .name{color:var(--ink-soft);font-family:var(--f-body);font-size:.88rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .name small{display:block;font-size:.7rem;opacity:.75}
+.lrow .amt{text-align:right;white-space:nowrap}
+.track{position:relative;height:22px}
+.track .zero{position:absolute;top:-6px;bottom:-6px;width:1px;background:var(--ink-soft);opacity:.4}
+.bar{position:absolute;top:0;bottom:0;border-radius:2px;transition:left .35s ease,width .35s ease}
+.bar.rev,.bar.left{background:var(--gold)}
+.bar.var{background:var(--cost)}
+.bar.fix{background:var(--cost);opacity:.55}
+.bar.left.neg{background:var(--loss)}
+.lrow.total{border-top:1px solid var(--line);margin-top:.35rem;padding-top:.7rem}
+.lrow.total .name{color:var(--ink);font-weight:600}
+.lrow.total .amt{font-weight:600}
+.lrow.sub .name{color:var(--ink);font-weight:600}
+.lrow.sub{border-top:1px dashed var(--line);margin-top:.2rem;padding-top:.55rem}
+.neg-text{color:var(--loss)}
+.pos-text{color:var(--gold-text)}
+.verdict{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.25rem 1.25rem;align-items:baseline;margin-top:1.5rem;padding-top:1.25rem;border-top:1px dashed var(--line)}
+.big{font-family:var(--f-display);font-weight:900;font-size:clamp(2.6rem,7vw,4rem);line-height:1;font-variant-numeric:tabular-nums lining-nums;grid-row:span 2}
+.verdict .k{font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.verdict p{margin:0;font-size:1rem;line-height:1.5}
+.split{display:flex;height:42px;border-radius:4px;overflow:hidden;margin-top:1.25rem;font-family:var(--f-data);font-size:.78rem;font-weight:600}
+.split div{display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;transition:flex-basis .35s ease;min-width:0}
+.split .c{background:var(--cost);color:var(--on-gold)}
+.split .p{background:var(--gold);color:var(--on-gold)}
+.split .p.neg{background:var(--loss)}
+table.conv{width:100%;border-collapse:collapse;font-family:var(--f-data);font-size:.85rem;font-variant-numeric:tabular-nums;margin-top:.6rem}
+table.conv th,table.conv td{text-align:right;padding:.5rem .6rem;border-bottom:1px solid var(--line)}
+table.conv th:first-child,table.conv td:first-child{text-align:left}
+table.conv th{font-family:var(--f-body);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.tbl-wrap{overflow-x:auto}
+.mode{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;margin-bottom:1.25rem}
+.mode button{background:none;border:0;padding:.4rem .9rem;border-radius:999px;font-size:.85rem;font-weight:600;color:var(--ink-soft);cursor:pointer}
+.mode button[aria-pressed="true"]{background:var(--gold);color:var(--on-gold)}
+
+/* ---------- sponsors / contact ---------- */
+.offer{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:1.5rem}
+.offer > div{border-top:2px solid var(--gold);padding-top:1rem}
+.offer p{margin:.4rem 0 0;color:var(--ink-soft);font-size:.98rem}
+.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
+.slot{aspect-ratio:3/2;max-width:100%;border:1px dashed var(--line);border-radius:6px;display:grid;place-items:center;text-align:center;padding:1rem;color:var(--ink-soft);font-size:.9rem}
+.slot b{display:block;font-family:var(--f-display);color:var(--ink);font-size:1.1rem;margin-bottom:.2rem}
+.reasons{display:flex;gap:.5rem;flex-wrap:wrap}
+.reasons label{display:flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.45rem .9rem;cursor:pointer;font-size:.92rem;color:var(--ink-soft)}
+.reasons input{accent-color:var(--gold)}
+.reasons label:has(input:checked){border-color:var(--gold);color:var(--ink)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:2.5rem;align-items:start}
+.aside-card{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:1.4rem}
+.aside-card ul{margin:.6rem 0 0;padding-left:1.1rem;color:var(--ink-soft);font-size:.95rem}
+.aside-card li{margin-bottom:.4rem}
+.inbox{margin-top:2.5rem}
+.inbox li{list-style:none}
+.inbox ul{padding:0;margin:0}
+.msg{border-top:1px solid var(--line);padding-block:1rem}
+.msg .hd{display:flex;flex-wrap:wrap;gap:.3rem 1rem;align-items:baseline;font-size:.9rem}
+.msg .pill{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold-text);padding:.15rem .55rem;border-radius:999px}
+.msg p{margin:.4rem 0 0;color:var(--ink-soft);white-space:pre-wrap;overflow-wrap:anywhere}
+.msg .em{font-family:var(--f-data);font-size:.82rem;color:var(--ink);user-select:all}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:2.25rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:var(--ink-soft)}
+footer strong{font-family:var(--f-display);font-weight:900;color:var(--ink);font-size:1rem;text-transform:uppercase}
+footer nav{display:flex;gap:1rem;flex-wrap:wrap}
+footer nav a{text-decoration:none}
+footer nav a:hover{color:var(--gold-text)}
+
+@media (max-width: 900px){
+  .hero-art{grid-template-columns:minmax(0,1fr)}
+  .hero-img{max-width:36rem}
+  :root{--margin-col:0px}
+  .page::before{display:none}
+  .row{grid-template-columns:minmax(0,1fr);gap:0}
+  .margin{text-align:left;padding-top:0;margin-bottom:.9rem;border-left:2px solid var(--gold);padding-left:.75rem}
+  .margin br{display:none}
+  .margin code{display:inline;margin:0 0 0 .5rem}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .eps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .episode{grid-template-columns:minmax(0,14rem) minmax(0,1fr);gap:1.5rem}
+  .contact-grid{grid-template-columns:minmax(0,1fr)}
+  .controls.three,.controls.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width: 640px){
+  .top .wrap{flex-direction:column;align-items:stretch;gap:.5rem}
+  .band::before{background:linear-gradient(0deg, var(--paper) 0%, rgba(var(--shade),.78) 30%, rgba(var(--shade),.7) 100%)}
+  .band .wrap{padding-block:3rem 4rem}
+  .about-grid,.eps,.items,.aud,.controls,.controls.three,.controls.four,.steps,.grid2,.offer,.cta-strip,.results{grid-template-columns:minmax(0,1fr)}
+  .show-art{max-width:20rem}
+  .episode{grid-template-columns:minmax(0,1fr)}
+  .episode .side{position:static}
+  .episode .cover{max-width:20rem}
+  .slots{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hosts{gap:.75rem}
+  .avatar{font-size:1.6rem}
+  .host .nm{font-size:.95rem}
+  .lrow{grid-template-columns:minmax(0,6.5rem) minmax(0,1fr) 6.4rem;gap:.5rem}
+  .ledger{font-size:.72rem}
+  .lrow .name small{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .bar,.split div,.ep-card img{transition:none}
+}
+
+[hidden]{display:none!important}
+img{max-width:100%}
+.player{width:100%;margin-top:.25rem;color-scheme:dark}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#home" data-go="home" aria-label="Behind the Margins home">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><g fill="var(--gold)"><rect x="1" y="8" width="2" height="4" rx="1"/><rect x="5" y="5" width="2" height="10" rx="1"/><rect x="9" y="2" width="2" height="16" rx="1"/><rect x="13" y="5" width="2" height="10" rx="1"/><rect x="17" y="8" width="2" height="4" rx="1"/></g></svg>
+      <span>Behind <span class="the">the Margins</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="#home" data-go="home">Home</a>
+      <a href="#episodes" data-go="episodes">Episodes</a>
+      <a href="#tools" data-go="tools">Tools</a>
+      <a href="#sponsors" data-go="sponsors">Sponsors</a>
+      <a href="#contact" data-go="contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- =================== HOME =================== -->
+<main data-view="home">
+  <div class="band">
+    <div class="wrap">
+      <div class="hero hero-full">
+        <h1 class="sr-only">Behind the Margins: How Businesses Make Money</h1>
+        <div class="art">
+          <img class="hero-img" src="covers/hero-wide-v2.jpg" width="1672" height="941" alt="Behind the Margins season one: Firmin (Episode 1, a French restaurant in Malaysia), Secret Recipe (Episode 2), Sabrina Cheng (Episode 3, offshore energy talent) and Josiah Ng (Episode 4, Olympic cyclist and founder), with the hosts on air">
+          <div class="art-pill">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2Z"/></svg>
+            <span>A business &amp; leadership podcast<br>hosted by Rafael, Charmaine &amp; Sasha</span>
+          </div>
+          <a class="btn art-btn art-left" href="#episodes" data-go="episodes">Listen to the episodes</a>
+          <a class="btn ghost art-btn art-right" href="#tools" data-go="tools">Try the money tools</a>
+        </div>
+        <div class="cta art-cta">
+          <a class="btn" href="#episodes" data-go="episodes">Listen to the episodes</a>
+          <a class="btn ghost" href="#tools" data-go="tools">Try the money tools</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap page">
+    <section class="row first" aria-labelledby="about-h">
+      <aside class="margin"><b>The show</b>Founders, CEOs<br> and business<br> leaders</aside>
+      <div class="main">
+        <h2 id="about-h">The stories behind the numbers</h2>
+        <div class="about-grid">
+          <img class="show-art" src="covers/show-art-v2.jpg" alt="Behind the Margins show artwork: How Businesses Make Money, with Rafael Mouret by the sea" loading="lazy">
+          <div class="prose">
+            <p><strong>How do businesses really make money, and what’s left after the bills are paid?</strong></p>
+            <p>Behind the Margins is a student-led podcast exploring <strong>business models</strong> through conversations with founders, CEOs and business leaders. We unpack revenue, costs, pricing and profit margins to understand what makes a business work.</p>
+            <p>From familiar brands to unexpected ventures, discover the decisions, challenges and trade-offs behind the numbers.</p>
+            <p>For students, aspiring entrepreneurs and anyone curious about business.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="latest-h">
+      <aside class="margin"><b>Season one</b>A new episode<br> every Monday<br> from 2 November</aside>
+      <div class="main">
+        <h2 id="latest-h">Season one episodes</h2>
+        <div class="eps" id="homeEps"></div>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="fmt-h">
+      <aside class="margin"><b>The format</b>Every episode<br> follows the<br> money</aside>
+      <div class="main">
+        <h2 id="fmt-h">How an episode runs</h2>
+        <p class="prose" style="margin:0">Each conversation follows the money through a single business, from the first sale to the last line of the accounts.</p>
+        <ol class="steps">
+          <li><span class="n">STEP 1</span><h3>The business</h3><p>Who they are, what they sell and who buys it.</p></li>
+          <li><span class="n">STEP 2</span><h3>Money in</h3><p>How revenue is earned and how prices are set.</p></li>
+          <li><span class="n">STEP 3</span><h3>Money out</h3><p>The biggest costs, and the ones people don’t expect.</p></li>
+          <li><span class="n">STEP 4</span><h3>What’s left</h3><p>The margin, and the decisions that shape it.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="cover-h">
+      <aside class="margin"><b>Line items</b>The ideas each<br> episode keeps<br> coming back to</aside>
+      <div class="main">
+        <h2 id="cover-h">What we cover</h2>
+        <div class="items">
+          <div class="item"><h3>Revenue</h3><span class="sym">+ money in</span><p>Everything customers pay. Where it comes from, how often, and which products bring in the most.</p></div>
+          <div class="item"><h3>Operating costs</h3><span class="sym">− money out</span><p>Rent, salaries, stock, marketing. What it takes to keep the doors open every month.</p></div>
+          <div class="item"><h3>Pricing</h3><span class="sym">× per unit</span><p>Why a product costs what it does, and what happens to the business when that price moves.</p></div>
+          <div class="item"><h3>Profit margin</h3><span class="sym">= what’s left</span><p>The share of each sale a business keeps after paying for everything.</p></div>
+          <div class="item"><h3>Business models</h3><span class="sym">how it works</span><p>Restaurants, franchises, agencies, subscriptions. The engine underneath the brand.</p></div>
+          <div class="item"><h3>Decisions</h3><span class="sym">what next</span><p>The calls founders and leaders make, and how those choices show up in the numbers.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="aud-h">
+      <aside class="margin"><b>Listeners</b>No finance<br> background<br> needed</aside>
+      <div class="main">
+        <h2 id="aud-h">Who it’s for</h2>
+        <div class="aud">
+          <div><h3>Students</h3><p>See the ideas from economics and business class at work in companies you know.</p></div>
+          <div><h3>Aspiring entrepreneurs</h3><p>Learn how real founders think about pricing, costs and growth before you start your own.</p></div>
+          <div><h3>The curious</h3><p>Ever wondered how your favourite café pays its rent? This is where you find out.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="hosts-h">
+      <aside class="margin"><b>The team</b>Garden<br> International<br> School, KL</aside>
+      <div class="main">
+        <h2 id="hosts-h">Made by three students for financial education purposes</h2>
+        <p class="prose" style="margin:0">Created and developed by three students at Garden International School in Kuala Lumpur, with a shared ambition to make business and financial education accessible.</p>
+        <div class="hosts">
+          <div class="host"><img class="avatar photo" src="covers/sasha-v5.jpg" alt="Portrait of Sasha Sim" loading="lazy"><div class="nm">Sasha Sim</div><div class="role">Co-creator &amp; mathematical modelling</div></div>
+          <div class="host"><img class="avatar photo" src="covers/charmaine.jpg" alt="Portrait of Charmaine Soo" loading="lazy"><div class="nm">Charmaine Soo</div><div class="role">Co-creator &amp; article writing</div></div>
+          <div class="host"><img class="avatar photo" src="covers/rafael-v4.jpg" alt="Portrait of Rafael Mouret" loading="lazy"><div class="nm">Rafael Mouret</div><div class="role">Co-creator &amp; interviews</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" aria-label="Get involved">
+      <aside class="margin"><b>Get involved</b>Listen, learn,<br> or join us<br> on the mic</aside>
+      <div class="main">
+        <div class="cta-strip">
+          <a href="#tools" data-go="tools"><h3>Money tools</h3><p>Five calculators that turn the ideas from each episode into numbers you can play with.</p><span class="go">Open the tools →</span></a>
+          <a href="#contact" data-go="contact"><h3>Be a guest</h3><p>Run a business with a story worth telling? We’d love to interview you.</p><span class="go">Get in touch →</span></a>
+          <a href="#sponsors" data-go="sponsors"><h3>Sponsor the show</h3><p>Help three students make business education free for everyone.</p><span class="go">See how →</span></a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- =================== EPISODES =================== -->
+<main data-view="episodes" hidden>
+  <div class="wrap page">
+    <div class="row page-head">
+      <aside class="margin"><b>Season one</b>A new episode<br> every Monday<br> from 2 November</aside>
+      <div class="main">
+        <h1>The <span class="g">episodes</span></h1>
+        <p>Listen on your favourite app, read what each conversation covers, and leave a rating or a comment for the team.</p>
+        <div class="cta" id="showLinks"></div>
+      </div>
+    </div>
+    <div id="epList"></div>
+  </div>
+</main>
+
+<!-- =================== TOOLS =================== -->
+<main data-view="tools" hidden>
+  <div class="wrap page">
+    <div class="row page-head">
+      <aside class="margin"><b>Toolkit</b>Free to use.<br> No sign-up.</aside>
+      <div class="main">
+        <h1>Money <span class="g">tools</span></h1>
+        <p>Five interactive calculators for the ideas behind every episode. Change the numbers and see what happens to the business.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <aside class="margin" id="toolMargin"></aside>
+      <div class="main">
+        <div class="tool-tabs" role="tablist" aria-label="Tools">
+          <button role="tab" id="tab-cup" aria-controls="tool-cup" aria-selected="true" data-tool="cup">Profit margin</button>
+          <button role="tab" id="tab-be" aria-controls="tool-be" aria-selected="false" data-tool="be">Break-even</button>
+          <button role="tab" id="tab-mm" aria-controls="tool-mm" aria-selected="false" data-tool="mm">Markup vs margin</button>
+          <button role="tab" id="tab-pl" aria-controls="tool-pl" aria-selected="false" data-tool="pl">Profit &amp; loss</button>
+          <button role="tab" id="tab-cg" aria-controls="tool-cg" aria-selected="false" data-tool="cg">Compound growth</button>
+        </div>
+
+        <!-- Tool 1: margin explorer -->
+        <div class="tool" id="tool-cup" role="tabpanel" aria-labelledby="tab-cup">
+          <h2>Follow one cup of bubble tea</h2>
+          <p class="intro">Every ringgit a customer pays has somewhere to go. Some costs come with every cup. Others, like rent and wages, have to be paid whether you sell ten cups or a thousand.</p>
+          <div class="panel">
+            <div class="panel-head"><h3>Where RM <span id="priceHead">12.00</span> goes</h3><span class="tag">Illustrative numbers</span></div>
+            <div class="controls">
+              <div class="ctl"><label for="cupPrice">Price per cup <output id="cupPriceOut" for="cupPrice">RM 12.00</output></label><input type="range" id="cupPrice" min="6" max="20" step="0.5" value="12"></div>
+              <div class="ctl"><label for="cupCups">Cups sold per day <output id="cupCupsOut" for="cupCups">120</output></label><input type="range" id="cupCups" min="20" max="300" step="5" value="120"></div>
+            </div>
+            <div class="ledger" id="cupLedger" role="img" aria-label="Waterfall chart breaking the price of one cup into costs and what is left"></div>
+            <div class="legend" aria-hidden="true"><span><i style="background:var(--gold)"></i>Money in / left over</span><span><i style="background:var(--cost)"></i>Cost of each cup</span><span><i style="background:var(--cost);opacity:.55"></i>Daily fixed cost, shared across cups</span></div>
+            <div class="verdict"><div class="big" id="cupBig">–</div><span class="k">Profit margin per cup</span><p id="cupText"></p></div>
+          </div>
+        </div>
+
+        <!-- Tool 2: break-even -->
+        <div class="tool" id="tool-be" role="tabpanel" aria-labelledby="tab-be" hidden>
+          <h2>How many sales to break even?</h2>
+          <p class="intro">A business breaks even when the money coming in covers every cost. Each sale chips away at the fixed bills. Find the point where the business stops losing money.</p>
+          <div class="panel">
+            <div class="chips"><span class="lbl">Try:</span><button type="button" data-be="cafe">Café</button><button type="button" data-be="tuition">Tuition centre</button><button type="button" data-be="tshirt">T-shirt brand</button></div>
+            <div class="controls four">
+              <div class="field"><label for="beFixed">Fixed costs per month</label><div class="num-in"><span>RM</span><input id="beFixed" type="number" min="0" step="100" value="12000" inputmode="decimal"></div></div>
+              <div class="field"><label for="bePrice">Price per sale</label><div class="num-in"><span>RM</span><input id="bePrice" type="number" min="0" step="0.5" value="25" inputmode="decimal"></div></div>
+              <div class="field"><label for="beVar">Variable cost per sale</label><div class="num-in"><span>RM</span><input id="beVar" type="number" min="0" step="0.5" value="10" inputmode="decimal"></div></div>
+              <div class="field"><label for="beSales">Expected sales per month</label><div class="num-in"><span>#</span><input id="beSales" type="number" min="0" step="10" value="1000" inputmode="numeric"></div></div>
+            </div>
+            <div class="results" id="beResults"></div>
+            <svg class="chart" id="beChart" viewBox="0 0 640 280" role="img" aria-label="Revenue and total cost lines crossing at the break-even point"></svg>
+            <div class="legend" aria-hidden="true"><span><i style="background:var(--gold)"></i>Revenue</span><span><i style="background:var(--cost)"></i>Total cost</span><span><i style="background:var(--loss);opacity:.5"></i>Loss zone</span><span><i style="background:var(--gold);opacity:.4"></i>Profit zone</span></div>
+            <p class="explain" id="beText"></p>
+          </div>
+        </div>
+
+        <!-- Tool 3: markup vs margin -->
+        <div class="tool" id="tool-mm" role="tabpanel" aria-labelledby="tab-mm" hidden>
+          <h2>Markup is not margin</h2>
+          <p class="intro">Markup compares profit to what the product cost you. Margin compares profit to what the customer paid. Mixing them up is one of the most common pricing mistakes.</p>
+          <div class="panel">
+            <div class="mode" role="group" aria-label="Calculator mode">
+              <button type="button" aria-pressed="true" data-mm="price">I know cost and price</button>
+              <button type="button" aria-pressed="false" data-mm="target">I want a target margin</button>
+            </div>
+            <div class="controls">
+              <div class="field"><label for="mmCost">Cost to make or buy</label><div class="num-in"><span>RM</span><input id="mmCost" type="number" min="0" step="0.5" value="40" inputmode="decimal"></div></div>
+              <div class="field" id="mmPriceWrap"><label for="mmPrice">Selling price</label><div class="num-in"><span>RM</span><input id="mmPrice" type="number" min="0" step="0.5" value="60" inputmode="decimal"></div></div>
+              <div class="field" id="mmTargetWrap" hidden><label for="mmTarget">Target margin</label><div class="num-in"><span>%</span><input id="mmTarget" type="number" min="0" max="95" step="1" value="40" inputmode="decimal"></div></div>
+            </div>
+            <div class="split" id="mmSplit" aria-hidden="true"></div>
+            <div class="results" id="mmResults"></div>
+            <p class="explain" id="mmText"></p>
+            <h4 class="label" style="margin:1.75rem 0 .2rem">Quick conversion table</h4>
+            <div class="tbl-wrap"><table class="conv"><thead><tr><th>Markup</th><th>Margin</th><th>Cost RM 100 sells for</th></tr></thead><tbody id="mmTable"></tbody></table></div>
+          </div>
+        </div>
+
+        <!-- Tool 4: P&L -->
+        <div class="tool" id="tool-pl" role="tabpanel" aria-labelledby="tab-pl" hidden>
+          <h2>Build a profit &amp; loss statement</h2>
+          <p class="intro">A profit and loss statement takes a year of sales and subtracts costs in layers. Each layer has its own margin, and each one tells you something different about the business.</p>
+          <div class="panel">
+            <div class="chips"><span class="lbl">Example businesses:</span><button type="button" data-pl="restaurant">Restaurant</button><button type="button" data-pl="cafe">Café chain</button><button type="button" data-pl="agency">Staffing agency</button></div>
+            <div class="controls">
+              <div class="field"><label for="plRev">Revenue (sales) per year</label><div class="num-in"><span>RM</span><input id="plRev" type="number" min="0" step="1000" value="2400000" inputmode="decimal"></div></div>
+              <div class="field"><label for="plCogs">Cost of goods sold</label><div class="num-in"><span>RM</span><input id="plCogs" type="number" min="0" step="1000" value="780000" inputmode="decimal"></div></div>
+              <div class="field"><label for="plOpex">Operating expenses (rent, staff, marketing)</label><div class="num-in"><span>RM</span><input id="plOpex" type="number" min="0" step="1000" value="1350000" inputmode="decimal"></div></div>
+              <div class="field"><label for="plTax">Tax rate on profit</label><div class="num-in"><span>%</span><input id="plTax" type="number" min="0" max="60" step="1" value="24" inputmode="decimal"></div></div>
+            </div>
+            <div class="ledger" id="plLedger" role="img" aria-label="Profit and loss statement as a waterfall"></div>
+            <div class="results" id="plResults"></div>
+            <p class="explain" id="plText"></p>
+          </div>
+        </div>
+
+        <!-- Tool 5: compound growth -->
+        <div class="tool" id="tool-cg" role="tabpanel" aria-labelledby="tab-cg" hidden>
+          <h2>Watch money grow</h2>
+          <p class="intro">Businesses reinvest profit to grow. You can do the same with savings. Interest earns interest, and given enough years the growth overtakes what you put in.</p>
+          <div class="panel">
+            <div class="controls">
+              <div class="ctl"><label for="cgStart">Starting amount <output id="cgStartOut" for="cgStart"></output></label><input type="range" id="cgStart" min="0" max="20000" step="500" value="1000"></div>
+              <div class="ctl"><label for="cgMonthly">Added each month <output id="cgMonthlyOut" for="cgMonthly"></output></label><input type="range" id="cgMonthly" min="0" max="2000" step="25" value="100"></div>
+              <div class="ctl"><label for="cgRate">Yearly return <output id="cgRateOut" for="cgRate"></output></label><input type="range" id="cgRate" min="0" max="12" step="0.5" value="5"></div>
+              <div class="ctl"><label for="cgYears">Years <output id="cgYearsOut" for="cgYears"></output></label><input type="range" id="cgYears" min="1" max="40" step="1" value="15"></div>
+            </div>
+            <div class="results" id="cgResults"></div>
+            <svg class="chart" id="cgChart" viewBox="0 0 640 260" role="img" aria-label="Bar chart of money paid in and growth earned for each year"></svg>
+            <div class="legend" aria-hidden="true"><span><i style="background:var(--cost)"></i>Money you put in</span><span><i style="background:var(--gold)"></i>Growth earned</span></div>
+            <p class="explain" id="cgText"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- =================== SPONSORS =================== -->
+<main data-view="sponsors" hidden>
+  <div class="wrap page">
+    <div class="row page-head">
+      <aside class="margin"><b>Partners</b>Supporting<br> student-made<br> education</aside>
+      <div class="main">
+        <h1>Our <span class="g">sponsors</span></h1>
+        <p>Behind the Margins is made by three students and is free for every listener. Sponsors help cover the cost of making it.</p>
+      </div>
+    </div>
+
+    <section class="row first" aria-labelledby="sp-now">
+      <aside class="margin"><b>Season one</b>Founding<br> sponsor places<br> open now</aside>
+      <div class="main">
+        <h2 id="sp-now">Founding sponsors</h2>
+        <p class="prose" style="margin:0">We’re looking for our first partners. Founding sponsors will be listed here for the whole of season one.</p>
+        <div class="slots">
+          <div class="slot"><div><b>Your logo here</b>Founding sponsor</div></div>
+          <div class="slot"><div><b>Your logo here</b>Founding sponsor</div></div>
+          <div class="slot"><div><b>Your logo here</b>Founding sponsor</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="sp-why">
+      <aside class="margin"><b>Why us</b>A young,<br> curious<br> audience</aside>
+      <div class="main">
+        <h2 id="sp-why">Why sponsor the show</h2>
+        <div class="offer">
+          <div><h3>Reach the next generation</h3><p>Our listeners are students, aspiring entrepreneurs and people curious about how business works.</p></div>
+          <div><h3>Back financial education</h3><p>Your support keeps every episode and every tool on this site free to use.</p></div>
+          <div><h3>Be seen with real stories</h3><p>Each episode features founders and CEOs talking openly about the numbers behind their companies.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row" aria-labelledby="sp-get">
+      <aside class="margin"><b>In return</b>What sponsors<br> receive</aside>
+      <div class="main">
+        <h2 id="sp-get">What sponsors receive</h2>
+        <ul class="topics" style="max-width:44rem">
+          <li><span>01</span><span>Your name and logo on this website, on the Sponsors page</span></li>
+          <li><span>02</span><span>A thank-you mention at the start of sponsored episodes</span></li>
+          <li><span>03</span><span>A credit and link in the episode notes on Spotify, Apple Podcasts and YouTube</span></li>
+        </ul>
+        <p class="prose" style="margin-top:1.25rem">Sponsors don’t choose our guests or what they say. Our interviews stay independent.</p>
+        <div class="cta"><a class="btn" href="#contact" data-go="contact" data-reason="sponsor">Talk to us about sponsoring</a></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- =================== CONTACT =================== -->
+<main data-view="contact" hidden>
+  <div class="wrap page">
+    <div class="row page-head">
+      <aside class="margin"><b>Contact</b>We read every<br> message</aside>
+      <div class="main">
+        <h1>Talk to <span class="g">the team</span></h1>
+        <p>Want to tell your business’s story on the show, sponsor an episode, or just say hello? Send the three of us a message.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <aside class="margin"><b>Guests</b>Founders, CEOs,<br> managers and<br> owners of any<br> size of business</aside>
+      <div class="main contact-grid">
+        <form id="contactForm" class="panel" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div style="display:grid;gap:1rem">
+            <div class="field"><span class="lbl" id="reasonLbl">I’m getting in touch to…</span>
+              <div class="reasons" role="radiogroup" aria-labelledby="reasonLbl">
+                <label><input type="radio" name="reason" value="guest" id="r-guest" checked> Be interviewed</label>
+                <label><input type="radio" name="reason" value="sponsor" id="r-sponsor"> Sponsor the show</label>
+                <label><input type="radio" name="reason" value="other" id="r-other"> Something else</label>
+              </div>
+            </div>
+            <div class="grid2">
+              <div class="field"><label for="cName">Your name</label><input id="cName" name="name" autocomplete="name" required maxlength="120"></div>
+              <div class="field"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" autocomplete="email" required maxlength="200"></div>
+              <div class="field"><label for="cOrg">Company or organisation</label><input id="cOrg" name="org" autocomplete="organization" maxlength="160"></div>
+              <div class="field"><label for="cRole">Your role</label><input id="cRole" name="role" autocomplete="organization-title" maxlength="120" placeholder="e.g. Founder, CEO"></div>
+            </div>
+            <div class="field"><label for="cMsg" id="cMsgLbl">Tell us about your business and what makes its story interesting</label><textarea id="cMsg" name="message" required maxlength="4000"></textarea></div>
+            <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center">
+              <button class="btn" type="submit" id="cSend">Send message</button>
+              <p class="note" id="cNote" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </form>
+        <div class="aside-card">
+          <h3>What to expect if you’re a guest</h3>
+          <ul>
+            <li>A conversation of about 30 to 45 minutes, in person in Kuala Lumpur or online.</li>
+            <li>We send our questions in advance, following our four steps: the business, money in, money out, what’s left.</li>
+            <li>You decide which numbers you’re comfortable sharing.</li>
+            <li>You hear the episode before it is published.</li>
+          </ul>
+          <p class="note" style="margin-top:1rem" id="emailLine"></p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Behind the Margins</strong><br>How Businesses Make Money · A student podcast from Kuala Lumpur, Malaysia</div>
+    <nav aria-label="Footer">
+      <a href="#episodes" data-go="episodes">Episodes</a>
+      <a href="#tools" data-go="tools">Tools</a>
+      <a href="#sponsors" data-go="sponsors">Sponsors</a>
+      <a href="#contact" data-go="contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ==================== CONTENT ==================== */
+// Add links here once the show is live. Empty strings show as "coming soon".
+var SHOW_LINKS = { spotify: "", apple: "https://podcasts.apple.com/podcast/behind-the-margins/id6829644292", youtube: "", rss: "https://anchor.fm/s/1196ef450/podcast/rss" };
+var CONTACT_EMAIL = ""; // e.g. "behindthemargins@…"
+
+var EPISODES = [
+  { id: "ep1", n: 1, title: "A French Restaurant in Malaysia", guest: "With Firmin Rieu, French Chef & Entrepreneur",
+    cover: "covers/ep1.jpg", industry: "Restaurants", tool: "pl",
+    blurb: "What it takes to turn a passion for food into a profitable business: costs, staff turnover, customers and margins.",
+    summary: [
+      "In our first episode, we sit down with Firmin Rieu, a French chef and entrepreneur running a French restaurant in Malaysia, to follow the money through a business most of us only see from the dining table.",
+      "We explore how his costs and profit margins compare with industry benchmarks, how he manages staff turnover, and how his customer base shapes revenue. Discover what it takes to turn a passion for food into a profitable business."
+    ],
+    topics: [["Business","Turning a passion for food into a business"],["Money in","How his customer base shapes revenue"],["Money out","Costs, and managing staff turnover"],["What’s left","Profit margins against industry benchmarks"]],
+    release: "2026-11-02",
+    links: { spotify: "", apple: "https://podcasts.apple.com/podcast/behind-the-margins/id6829644292?i=1000799337266", youtube: "" } },
+  { id: "ep2", n: 2, title: "Secret Recipe: A CEO’s Journey", guest: "With Patrick Sim Chee Hong, CEO, Secret Recipe",
+    cover: "covers/ep2-v3.jpg", industry: "Food & beverage chain", tool: "be",
+    blurb: "Does operating a large restaurant chain mean bigger profit margins? The revenue, costs and profits behind Secret Recipe and its restaurants.",
+    summary: [
+      "Does operating a large restaurant chain mean bigger profit margins?",
+      "In this episode, we sit down with Secret Recipe’s CEO, Patrick Sim Chee Hong, to explore the revenue, costs and profits behind both the chain and its individual restaurants.",
+      "We discuss dine-in and delivery sales, the role of in-house production, and the decisions involved in running a restaurant business at scale. Discover how a familiar brand turns meals and cakes into a business and what shapes the margins along the way."
+    ],
+    topics: [["Business","Running a restaurant chain at scale"],["Money in","Dine-in and delivery sales"],["Money out","In-house production and running costs"],["What’s left","Margins for the chain and each restaurant"]],
+    release: "2026-11-09",
+    links: { spotify: "", apple: "", youtube: "" } },
+  { id: "ep3", n: 3, title: "IntelliS Offshore: Talent for the Offshore Energy Sector", guest: "With Sabrina Cheng, Founder & CEO",
+    cover: "covers/ep3-v3.jpg", industry: "Offshore energy talent", tool: "mm",
+    blurb: "How do you make money from knowing where the right people are? Inside a talent intelligence firm serving the offshore energy sector.",
+    summary: [
+      "How do you make money from knowing where the right people are? In episode three, we sit down with Sabrina Cheng, founder and CEO of IntelliS, a specialist talent intelligence firm serving the subsea and offshore energy sector across Southeast Asia and the Middle East.",
+      "Sabrina saw a gap in her industry: offshore energy companies were hiring through transactional staffing, when what they really needed was reliable information on who is available, where, and when. We explore how IntelliS grew from a regional recruitment practice into a multi-market business serving operators of floating oil and gas platforms, international engineering contractors and national oil companies.",
+      "We unpack what a people business actually sells, from talent market scans and workforce gap analyses to staffing, how it prices that work, what its biggest costs are, and what is left once the bills are paid."
+    ],
+    guestBio: "Sabrina Cheng has more than 17 years of experience in strategic operations. She is Global Ambassador for Asia-Pacific at the Energy Industries Council (2024–2026), where she promotes UK–Asia energy collaboration and offshore workforce mobility, and advises foreign energy companies working with local talent markets across Asia-Pacific and the Middle East. She holds an MBA in Economics, teaches organisational development and talent strategy as an Adjunct Professor at Zhejiang University of Finance & Economics, and is a member of Rotary International.",
+    topics: [["Business","From recruitment practice to talent intelligence"],["Money in","Market scans, workforce analyses and staffing"],["Money out","Specialist people across several markets"],["What’s left","Margins in a business that sells expertise"]],
+    release: "2026-11-16",
+    links: { spotify: "", apple: "", youtube: "" } },
+  { id: "ep4", n: 4, title: "Josiah Ng: Turning Sport into High Performance", guest: "With Josiah Ng, Olympic Cyclist & Founder",
+    cover: "covers/ep4.jpg", industry: "Sport & performance", tool: "cg",
+    blurb: "How lessons from elite sport can drive performance in business and in life.",
+    summary: [
+      "In episode four we talk to Josiah Ng, Olympic cyclist and founder, about what it takes to perform at the highest level and how those lessons carry over into building a business.",
+      "We look at how an athlete turns a sporting career into a company, what discipline, training and small daily improvements have in common with running a business, and how performance shows up in the numbers."
+    ],
+    topics: [["Business","From Olympic cyclist to founder"],["Money in","Turning a sporting name into a business"],["Money out","The real cost of high performance"],["What’s left","Small gains that add up over time"]],
+    release: "2026-11-23",
+    links: { spotify: "", apple: "", youtube: "" } }
+];
+
+/* ==================== HELPERS ==================== */
+function $(s, r){ return (r || document).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+function el(tag, attrs, kids){
+  var e = document.createElement(tag);
+  if (attrs) for (var k in attrs){
+    if (k === "text") e.textContent = attrs[k];
+    else if (k === "html") e.innerHTML = attrs[k];
+    else if (k === "class") e.className = attrs[k];
+    else e.setAttribute(k, attrs[k]);
+  }
+  (kids || []).forEach(function(c){ if (c) e.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+  return e;
+}
+function rm(n, dp){ dp = dp == null ? 2 : dp; var s = Math.abs(n).toLocaleString("en-MY", {minimumFractionDigits: dp, maximumFractionDigits: dp}); return (n < 0 ? "−RM " : "RM ") + s; }
+function pct(n, dp){ return (isFinite(n) ? n.toFixed(dp == null ? 1 : dp) : "–") + "%"; }
+function num(id){ var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : 0; }
+function starStr(n){ var s = ""; for (var i = 1; i <= 5; i++) s += i <= Math.round(n) ? "★" : "☆"; return s; }
+function starsEl(n){ var w = el("span", {class: "stars", "aria-label": n.toFixed(1) + " out of 5 stars"}); for (var i = 1; i <= 5; i++) w.appendChild(el("span", {class: i <= Math.round(n) ? "" : "off", text: "★"})); return w; }
+function fmtDate(t){ try { return new Date(t).toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"}); } catch(e){ return ""; } }
+
+/* ==================== ROUTER ==================== */
+var VIEWS = ["home", "episodes", "tools", "sponsors", "contact"];
+function go(token, opts){
+  var view = token, anchor = null;
+  if (/^ep\d+$/.test(token)) { view = "episodes"; anchor = token; }
+  if (VIEWS.indexOf(view) < 0) { view = "home"; token = "home"; }
+  $$("main[data-view]").forEach(function(m){ m.hidden = m.getAttribute("data-view") !== view; });
+  $$(".nav a").forEach(function(a){ if (a.getAttribute("data-go") === view) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  try { history.replaceState(null, "", "#" + token); } catch(e){}
+  if (anchor && document.getElementById(anchor)) {
+    requestAnimationFrame(function(){ document.getElementById(anchor).scrollIntoView({block: "start"}); });
+  } else if (!(opts && opts.keepScroll)) {
+    window.scrollTo(0, 0);
+  }
+}
+document.addEventListener("click", function(e){
+  var a = e.target.closest("[data-go]");
+  if (!a) return;
+  e.preventDefault();
+  var r = a.getAttribute("data-reason");
+  if (r && document.getElementById("r-" + r)) { document.getElementById("r-" + r).checked = true; updateReason(); }
+  var t = a.getAttribute("data-tool");
+  if (t) showTool(t);
+  go(a.getAttribute("data-go"));
+});
+window.addEventListener("hashchange", function(){ go(location.hash.slice(1) || "home"); });
+
+/* ==================== EPISODES ==================== */
+var reviewsByEp = {};   // epId -> [{uid,name,stars,text,at}]
+var myReview = {};      // epId -> {stars,text,name}
+var reviewState = { db: null, uid: null, canWrite: null, ready: false };
+
+var LINK_META = [["spotify", "Spotify"], ["apple", "Apple Podcasts"], ["youtube", "YouTube"]];
+function relDate(ep){ var p = (ep.release || "").split("-"); return p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null; }
+function isOut(ep){ var d = relDate(ep); return !d || Date.now() >= d.getTime(); }
+function relText(ep, long){ var d = relDate(ep); if (!d) return ""; var f = d.toLocaleDateString("en-GB", {weekday: long ? "long" : undefined, day: "numeric", month: "long", year: "numeric"}); return isOut(ep) ? "Released " + f : "Available " + f; }
+function relBadge(ep, long){ return el("span", {class: "rel" + (isOut(ep) ? " out" : "")}, [el("span", {class: "dot", "aria-hidden": "true"}), relText(ep, long)]); }
+function linkBtn(url, label, primary, when){
+  if (url) return el("a", {class: "btn" + (primary ? "" : " ghost"), href: url, target: "_blank", rel: "noopener"}, [label, el("small", {text: "Open ↗"})]);
+  return el("span", {class: "btn ghost", "aria-disabled": "true"}, [label, el("small", {text: when ? "From " + when : "Coming soon"})]);
+}
+
+function renderShowLinks(){
+  var box = $("#showLinks"); box.innerHTML = "";
+  LINK_META.forEach(function(m, i){
+    var u = SHOW_LINKS[m[0]];
+    box.appendChild(u ? el("a", {class: "btn" + (i ? " ghost" : ""), href: u, target: "_blank", rel: "noopener", text: "Follow on " + m[1]}) : el("span", {class: "btn ghost", "aria-disabled": "true", text: m[1] + " · soon"}));
+  });
+  if (SHOW_LINKS.rss) {
+    var rss = el("button", {class: "btn ghost", type: "button", text: "Copy RSS feed"});
+    rss.addEventListener("click", function(){ copyText(SHOW_LINKS.rss, rss, "RSS link copied"); });
+    box.appendChild(rss);
+  }
+}
+function copyText(txt, btn, okMsg){
+  var orig = btn.textContent;
+  function done(m){ btn.textContent = m; setTimeout(function(){ btn.textContent = orig; }, 1800); }
+  try { navigator.clipboard.writeText(txt).then(function(){ done(okMsg); }, function(){ done(txt); }); } catch(e){ done(txt); }
+}
+
+var TOOL_NAMES = { cup: "Profit margin", be: "Break-even", mm: "Markup vs margin", pl: "Profit & loss", cg: "Compound growth" };
+
+function renderHomeEps(){
+  var box = $("#homeEps"); box.innerHTML = "";
+  EPISODES.forEach(function(ep){
+    var r = summary(ep.id);
+    var a = el("a", {class: "ep-card", href: "#" + ep.id, "data-go": ep.id}, [
+      el("img", {src: ep.cover, alt: "Episode " + ep.n + " cover: " + ep.title, loading: "lazy"}),
+      el("div", {class: "ep-tags"}, [el("span", {class: "ep-no", text: "Episode " + ep.n}), relBadge(ep)]),
+      el("h3", {text: ep.title}),
+      ep.guest ? el("div", {class: "guest", text: ep.guest}) : null,
+      el("p", {text: ep.blurb}),
+      r.count ? el("div", {class: "stars-inline"}, [el("b", {text: starStr(r.avg)}), " " + r.avg.toFixed(1) + " · " + r.count + (r.count === 1 ? " rating" : " ratings")]) : null,
+      el("span", {class: "more", text: "Listen and read more →"})
+    ]);
+    box.appendChild(a);
+  });
+}
+
+function summary(epId){
+  var list = reviewsByEp[epId] || [];
+  var rated = list.filter(function(r){ return r.stars > 0; });
+  var sum = rated.reduce(function(a, r){ return a + r.stars; }, 0);
+  return { count: rated.length, avg: rated.length ? sum / rated.length : 0, list: list };
+}
+
+function renderEpList(){
+  var box = $("#epList"); box.innerHTML = "";
+  EPISODES.forEach(function(ep){
+    var sec = el("section", {class: "row", id: ep.id, "aria-labelledby": ep.id + "-h"});
+    var margin = el("aside", {class: "margin", html: "<b>Episode " + ep.n + "</b>" + ep.industry});
+    var listen = el("div", {class: "listen"});
+    LINK_META.forEach(function(m, i){ listen.appendChild(linkBtn(ep.links[m[0]], m[1], i === 0, isOut(ep) ? "" : relDate(ep).toLocaleDateString("en-GB", {day: "numeric", month: "short"}))); });
+    var player = (ep.audio && isOut(ep)) ? el("audio", {class: "player", controls: "", preload: "none", src: ep.audio, "aria-label": "Play episode " + ep.n}) : null;
+
+    var topics = el("ol", {class: "topics"});
+    (ep.topics || []).forEach(function(t){ topics.appendChild(el("li", {}, [el("span", {text: t[0]}), el("span", {text: t[1]})])); });
+
+    var body = el("div", {class: "ep-body"}, [
+      el("div", {class: "ep-tags"}, [el("span", {class: "ep-no", text: "Episode " + ep.n}), relBadge(ep, true), ep.duration ? el("span", {class: "rel", text: durText(ep.duration)}) : null]),
+      el("h2", {class: "ep-title", id: ep.id + "-h", text: ep.title}),
+      ep.guest ? el("div", {class: "guest", text: ep.guest}) : null,
+      el("h4", {text: "Summary"})
+    ]);
+    ep.summary.forEach(function(p){ body.appendChild(el("p", {text: p})); });
+    if (ep.guestBio) { body.appendChild(el("h4", {text: "About the guest"})); body.appendChild(el("p", {text: ep.guestBio})); }
+    if (ep.topics && ep.topics.length) { body.appendChild(el("h4", {text: "Following the money"})); body.appendChild(topics); }
+    body.appendChild(el("a", {class: "tools-link", href: "#tools", "data-go": "tools", "data-tool": ep.tool, text: "Try the " + TOOL_NAMES[ep.tool] + " tool for this episode →"}));
+    body.appendChild(reviewBlock(ep));
+
+    var main = el("div", {class: "main episode"}, [
+      el("div", {class: "side"}, [el("img", {class: "cover", src: ep.cover, alt: "Episode " + ep.n + " cover: " + ep.title, loading: "lazy"}), player ? el("div", {class: "label", text: "Listen here"}) : null, player, el("div", {class: "label", text: "Listen on"}), listen]),
+      body
+    ]);
+    sec.appendChild(margin); sec.appendChild(main);
+    box.appendChild(sec);
+  });
+}
+
+function reviewBlock(ep){
+  var s = summary(ep.id);
+  var wrap = el("div", {class: "reviews", id: ep.id + "-reviews"});
+  var head = el("div", {class: "rev-head"}, [
+    el("h3", {text: "Ratings & comments"}),
+    s.count ? el("div", {class: "avg"}, [el("span", {class: "num", text: s.avg.toFixed(1)}), starsEl(s.avg), el("span", {class: "note", text: s.count + (s.count === 1 ? " rating" : " ratings")})])
+            : el("span", {class: "note", text: "No ratings yet"})
+  ]);
+  wrap.appendChild(head);
+
+  var list = el("ul", {class: "rev-list"});
+  var items = s.list.filter(function(r){ return r.text || r.stars; }).sort(function(a, b){ return (b.at || 0) - (a.at || 0); });
+  if (!reviewState.ready) list.appendChild(el("li", {}, [el("p", {class: "empty", text: "Loading comments…"})]));
+  else if (!items.length) list.appendChild(el("li", {}, [el("p", {class: "empty", text: reviewState.failed ? "Comments couldn’t be loaded right now. Try again later." : "Be the first to rate this episode or leave a comment."})]));
+  items.forEach(function(r){
+    var li = el("li", {}, [
+      el("div", {class: "who"}, [el("strong", {text: r.name || "A listener"}), r.stars ? starsEl(r.stars) : null, r.at ? el("time", {text: fmtDate(r.at)}) : null])
+    ]);
+    if (r.text) li.appendChild(el("p", {text: r.text}));
+    list.appendChild(li);
+  });
+  wrap.appendChild(list);
+
+  if (isOut(ep)) wrap.appendChild(reviewForm(ep));
+  else wrap.appendChild(el("p", {class: "note", style: "margin-top:1rem", text: "Ratings and comments open when the episode is released."}));
+  return wrap;
+}
+
+function reviewForm(ep){
+  var mine = myReview[ep.id] || {};
+  var stars = mine.stars || 0;
+  var f = el("form", {class: "rev-form", novalidate: ""});
+  var picker = el("div", {class: "picker", role: "radiogroup", "aria-label": "Your rating"});
+  function paint(){ $$("button", picker).forEach(function(b, i){ b.classList.toggle("on", i < stars); b.setAttribute("aria-checked", i + 1 === stars ? "true" : "false"); }); }
+  for (var i = 1; i <= 5; i++) (function(n){
+    var b = el("button", {type: "button", role: "radio", "aria-label": n + (n === 1 ? " star" : " stars"), text: "★"});
+    b.addEventListener("click", function(){ stars = n; paint(); });
+    picker.appendChild(b);
+  })(i);
+  var nameIn = el("input", {id: ep.id + "-rname", maxlength: "60", placeholder: "e.g. Aisha, Year 11", value: mine.name || ""});
+  var textIn = el("textarea", {id: ep.id + "-rtext", maxlength: "1500", placeholder: "What did you learn? What should we ask next time?"});
+  textIn.value = mine.text || "";
+  var note = el("p", {class: "note", role: "status", "aria-live": "polite"});
+  var btn = el("button", {class: "btn", type: "submit", text: mine.at ? "Update my review" : "Post review"});
+  f.appendChild(el("div", {class: "field"}, [el("span", {class: "lbl", text: mine.at ? "Your rating (you can change it)" : "Your rating"}), picker]));
+  f.appendChild(el("div", {class: "grid2"}, [
+    el("div", {class: "field"}, [el("label", {for: ep.id + "-rname", text: "Name shown with your comment"}), nameIn]),
+    el("div")
+  ]));
+  f.appendChild(el("div", {class: "field"}, [el("label", {for: ep.id + "-rtext", text: "Comment (optional)"}), textIn]));
+  var hp = el("input", {name: "website", tabindex: "-1", autocomplete: "off"});
+  f.appendChild(el("p", {class: "hp"}, [el("label", {}, ["Leave this empty ", hp])]));
+  f.appendChild(el("div", {style: "display:flex;gap:1rem;align-items:center;flex-wrap:wrap"}, [btn, note]));
+  paint();
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!stars && !textIn.value.trim()) { note.className = "note err"; note.textContent = "Pick a star rating or write a comment first."; return; }
+    btn.disabled = true; note.className = "note"; note.textContent = "Posting…";
+    saveReview(ep.id, { stars: stars, text: textIn.value.trim().slice(0, 1500), name: nameIn.value.trim().slice(0, 60), website: hp.value })
+      .then(function(){ note.className = "note ok"; note.textContent = "Thanks! Your review is posted."; })
+      .catch(function(err){
+        btn.disabled = false;
+        note.className = "note err";
+        note.textContent = (err && err.message) ? err.message : "That didn’t go through. Check your connection and try again.";
+      });
+  });
+  return f;
+}
+
+function clientId(){
+  var id = null;
+  try { id = localStorage.getItem("btm-client"); } catch(e){}
+  if (!id) {
+    id = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now());
+    try { localStorage.setItem("btm-client", id); } catch(e){}
+  }
+  return id;
+}
+function saveReview(epId, r){
+  return fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ep: epId, stars: r.stars, text: r.text, name: r.name, website: r.website || "", client: clientId() }) })
+    .then(function(res){ return res.json().catch(function(){ return {}; }).then(function(j){
+      if (!res.ok) { var e = new Error(j.error || ""); throw e; }
+      rebuildReviews(j.reviews || []); rerenderEpisodes();
+    }); });
+}
+function rebuildReviews(list){
+  reviewsByEp = {}; myReview = {};
+  var me = clientId();
+  (list || []).forEach(function(it){
+    var stars = Math.max(0, Math.min(5, Math.round(+it.stars || 0)));
+    var rec = { id: it.id, name: String(it.name || "").slice(0, 60), stars: stars, text: String(it.text || "").slice(0, 1500), at: +it.at || 0 };
+    (reviewsByEp[it.ep] = reviewsByEp[it.ep] || []).push(rec);
+    if (it.mine === me) myReview[it.ep] = rec;
+  });
+}
+function loadReviews(){
+  fetch("/api/reviews?client=" + encodeURIComponent(clientId()), { cache: "no-store" })
+    .then(function(r){ if (!r.ok) throw new Error(); return r.json(); })
+    .then(function(j){ reviewState.ready = true; reviewState.failed = false; rebuildReviews(j.reviews || []); rerenderEpisodes(); })
+    .catch(function(){ reviewState.ready = true; reviewState.failed = true; rerenderEpisodes(); });
+}
+
+var reviewRenderTimer = null;
+function rerenderEpisodes(){
+  // keep anything the viewer is typing: only re-render when no review field is focused
+  var a = document.activeElement;
+  if (a && a.closest && a.closest(".rev-form")) { clearTimeout(reviewRenderTimer); reviewRenderTimer = setTimeout(rerenderEpisodes, 1500); return; }
+  EPISODES.forEach(function(ep){
+    var old = document.getElementById(ep.id + "-reviews");
+    if (old) old.replaceWith(reviewBlock(ep));
+  });
+  renderHomeEps();
+}
+
+/* ==================== TOOLS ==================== */
+var TOOL_MARGIN = {
+  cup: "<b>Formula</b>Profit margin =<br> profit ÷ price<code>margin = (P − C) ÷ P</code>",
+  be: "<b>Formula</b>Break-even =<br> fixed costs ÷<br> contribution<code>BE = F ÷ (P − V)</code>",
+  mm: "<b>Formulas</b>Markup on cost,<br> margin on price<code>markup = (P − C) ÷ C</code><code>margin = (P − C) ÷ P</code>",
+  pl: "<b>Read it</b>Top line is sales.<br> Bottom line is<br> what’s left.<code>net margin = net profit ÷ revenue</code>",
+  cg: "<b>Formula</b>Each year grows<br> on the last<code>A = P(1 + r)ⁿ</code>"
+};
+function showTool(t){
+  $$(".tool-tabs [role=tab]").forEach(function(b){ var on = b.getAttribute("data-tool") === t; b.setAttribute("aria-selected", on ? "true" : "false"); b.tabIndex = on ? 0 : -1; });
+  $$(".tool").forEach(function(p){ p.hidden = p.id !== "tool-" + t; });
+  $("#toolMargin").innerHTML = TOOL_MARGIN[t];
+  try { localStorage.setItem("btm-tool", t); } catch(e){}
+}
+$$(".tool-tabs [role=tab]").forEach(function(b, i, all){
+  b.addEventListener("click", function(){ showTool(b.getAttribute("data-tool")); });
+  b.addEventListener("keydown", function(e){
+    var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (!d) return;
+    var n = all[(i + d + all.length) % all.length]; n.focus(); showTool(n.getAttribute("data-tool"));
+  });
+});
+
+/* --- generic waterfall ledger --- */
+function waterfall(box, start, startLabel, startSub, steps, endLabel, endSub, dp){
+  // steps: [{k, s, v (positive = cost), cls, subtotal?:{k,s}}]
+  var run = start, pts = [0, start];
+  steps.forEach(function(st){ run -= st.v; pts.push(run); });
+  var lo = Math.min.apply(null, pts), hi = Math.max.apply(null, pts), span = (hi - lo) || 1;
+  function x(v){ return ((v - lo) / span) * 100; }
+  var zero = x(0);
+  function row(name, sub, a, b, cls, amt, extra, tone){
+    var l = x(Math.min(a, b)), w = Math.max(Math.abs(x(b) - x(a)), .4);
+    return '<div class="lrow ' + (extra || "") + '"><div class="name">' + name + '<small>' + sub + '</small></div>' +
+      '<div class="track"><span class="zero" style="left:' + zero + '%"></span><span class="bar ' + cls + '" style="left:' + l + '%;width:' + w + '%"></span></div>' +
+      '<div class="amt ' + (tone || "") + '">' + amt + '</div></div>';
+  }
+  var html = row(startLabel, startSub, 0, start, "rev", rm(start, dp));
+  run = start;
+  steps.forEach(function(st){
+    if (st.subtotal) { html += row(st.subtotal.k, st.subtotal.s, 0, run, "left" + (run < 0 ? " neg" : ""), rm(run, dp), "sub", run < 0 ? "neg-text" : "pos-text"); }
+    html += row(st.k, st.s, run, run - st.v, st.cls, "−" + rm(st.v, dp).replace("−", ""));
+    run -= st.v;
+  });
+  html += row(endLabel, endSub, 0, run, "left" + (run < 0 ? " neg" : ""), rm(run, dp), "total", run < 0 ? "neg-text" : "pos-text");
+  box.innerHTML = html;
+  return run;
+}
+function results(box, cells){
+  box.innerHTML = cells.map(function(c){ return '<div><div class="k">' + c[0] + '</div><div class="v ' + (c[3] || "") + '">' + c[1] + '</div>' + (c[2] ? '<div class="s">' + c[2] + '</div>' : "") + '</div>'; }).join("");
+}
+
+/* --- Tool 1: cup --- */
+(function(){
+  var FIXED = [{k: "Staff wages", s: "RM 260 a day", d: 260}, {k: "Rent", s: "RM 220 a day", d: 220}, {k: "Power & other", s: "RM 100 a day", d: 100}];
+  var FIXED_DAY = 580, VAR_CUP = 3.00;
+  var price = $("#cupPrice"), cups = $("#cupCups");
+  function render(){
+    var p = parseFloat(price.value), c = parseInt(cups.value, 10);
+    var steps = [{k: "Tea, milk & pearls", s: "per cup", v: 2.40, cls: "var"}, {k: "Cup, straw & seal", s: "per cup", v: 0.60, cls: "var"}]
+      .concat(FIXED.map(function(f){ return {k: f.k, s: f.s, v: f.d / c, cls: "fix"}; }));
+    var left = waterfall($("#cupLedger"), p, "Price", "what the customer pays", steps, "Left over", "profit per cup");
+    var m = left / p * 100, big = $("#cupBig");
+    big.textContent = Math.round(m) + "%"; big.className = "big " + (left < 0 ? "neg-text" : "pos-text");
+    $("#cupPriceOut").textContent = rm(p); $("#priceHead").textContent = p.toFixed(2); $("#cupCupsOut").textContent = c;
+    var be = Math.ceil(FIXED_DAY / (p - VAR_CUP)), t;
+    if (left < 0) t = "The shop loses " + rm(-left) + " on every cup. Rent and wages are spread over too few sales. It needs about " + be + " cups a day just to break even.";
+    else if (m < 10) t = "Only just profitable. A slow week or a rent rise would push this shop into a loss. Break-even is about " + be + " cups a day.";
+    else t = "Of every " + rm(p) + " paid, the shop keeps " + rm(left) + ". At " + c + " cups a day, rent and wages add " + rm(FIXED_DAY / c) + " to each cup. Break-even is about " + be + " cups a day.";
+    $("#cupText").textContent = t;
+  }
+  price.addEventListener("input", render); cups.addEventListener("input", render); render();
+})();
+
+/* --- Tool 2: break-even --- */
+(function(){
+  var PRESETS = { cafe: [18000, 14, 5, 2500], tuition: [9000, 300, 40, 40], tshirt: [3000, 59, 22, 150] };
+  var ids = ["beFixed", "bePrice", "beVar", "beSales"];
+  function render(){
+    var F = num("beFixed"), P = num("bePrice"), V = num("beVar"), S = num("beSales");
+    var c = P - V, svg = $("#beChart");
+    if (c <= 0) {
+      results($("#beResults"), [["Contribution per sale", rm(c), "price − variable cost", "neg-text"], ["Break-even", "Never", "each sale loses money", "neg-text"], ["Profit at your sales", rm(S * c - F, 0), "per month", "neg-text"]]);
+      $("#beText").textContent = "Each sale costs more to make than it brings in, so selling more only makes the loss bigger. Raise the price or cut the variable cost first.";
+      svg.innerHTML = ""; return;
+    }
+    var be = F / c, profit = S * c - F, mos = S > 0 ? (S - be) / S * 100 : 0;
+    results($("#beResults"), [
+      ["Contribution per sale", rm(c), pct(c / P * 100) + " of the price"],
+      ["Break-even", Math.ceil(be).toLocaleString("en-MY") + " sales", "about " + Math.ceil(be / 30).toLocaleString("en-MY") + " a day"],
+      ["Profit at " + S.toLocaleString("en-MY") + " sales", rm(profit, 0), "per month", profit < 0 ? "neg-text" : "pos-text"]
+    ]);
+    $("#beText").textContent = profit >= 0
+      ? "Each sale leaves " + rm(c) + " to pay the fixed bills. After " + Math.ceil(be).toLocaleString("en-MY") + " sales those bills are covered and every extra sale is profit. Your sales could fall " + pct(mos, 0) + " before you start losing money. That cushion is called the margin of safety."
+      : "Each sale leaves " + rm(c) + " towards the fixed bills of " + rm(F, 0) + ". You need " + Math.ceil(be - S).toLocaleString("en-MY") + " more sales a month to stop losing money.";
+    // chart
+    var W = 640, H = 280, L = 62, R = 16, T = 14, B = 36;
+    var maxX = Math.max(be * 2, S * 1.15, 10), maxY = Math.max(P * maxX, F + V * maxX);
+    function sx(u){ return L + (u / maxX) * (W - L - R); }
+    function sy(v){ return T + (1 - v / maxY) * (H - T - B); }
+    var g = "";
+    var ticksY = niceTicks(maxY, 4), ticksX = niceTicks(maxX, 5);
+    ticksY.forEach(function(v){ g += '<line class="grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + sy(v) + '" y2="' + sy(v) + '"/><text x="' + (L - 8) + '" y="' + (sy(v) + 4) + '" text-anchor="end">' + short(v) + '</text>'; });
+    ticksX.forEach(function(u){ g += '<text x="' + sx(u) + '" y="' + (H - B + 18) + '" text-anchor="middle">' + Math.round(u).toLocaleString("en-MY") + '</text>'; });
+    g += '<line class="axis" x1="' + L + '" x2="' + (W - R) + '" y1="' + sy(0) + '" y2="' + sy(0) + '"/>';
+    g += '<text x="' + (W - R) + '" y="' + (H - 4) + '" text-anchor="end">sales per month</text>';
+    // zones
+    g += '<polygon class="a-loss" points="' + sx(0) + ',' + sy(0) + ' ' + sx(0) + ',' + sy(F) + ' ' + sx(be) + ',' + sy(P * be) + '"/>';
+    g += '<polygon class="a-profit" points="' + sx(be) + ',' + sy(P * be) + ' ' + sx(maxX) + ',' + sy(P * maxX) + ' ' + sx(maxX) + ',' + sy(F + V * maxX) + '"/>';
+    g += '<line class="l-cost" x1="' + sx(0) + '" y1="' + sy(F) + '" x2="' + sx(maxX) + '" y2="' + sy(F + V * maxX) + '"/>';
+    g += '<line class="l-rev" x1="' + sx(0) + '" y1="' + sy(0) + '" x2="' + sx(maxX) + '" y2="' + sy(P * maxX) + '"/>';
+    if (S > 0) g += '<line class="axis" stroke-dasharray="3 4" x1="' + sx(S) + '" x2="' + sx(S) + '" y1="' + sy(0) + '" y2="' + T + '"/><text x="' + (sx(S) + 5) + '" y="' + (T + 10) + '">your sales</text>';
+    var bx = sx(be), by = sy(P * be), anchor = bx > W * .7 ? "end" : "start", off = anchor === "end" ? -10 : 10;
+    g += '<circle class="pt" cx="' + bx + '" cy="' + by + '" r="5"/><text class="pt-lbl" x="' + (bx + off) + '" y="' + (by - 10) + '" text-anchor="' + anchor + '">Break-even: ' + Math.ceil(be).toLocaleString("en-MY") + '</text>';
+    svg.innerHTML = g;
+  }
+  ids.forEach(function(id){ $("#" + id).addEventListener("input", render); });
+  $$("[data-be]").forEach(function(b){ b.addEventListener("click", function(){ var p = PRESETS[b.getAttribute("data-be")]; ids.forEach(function(id, i){ $("#" + id).value = p[i]; }); $$("[data-be]").forEach(function(x){ x.classList.toggle("on", x === b); }); render(); }); });
+  render();
+})();
+function niceTicks(max, n){
+  var raw = max / n, mag = Math.pow(10, Math.floor(Math.log10(raw))), step = [1, 2, 2.5, 5, 10].map(function(m){ return m * mag; }).find(function(s){ return s >= raw; });
+  var out = []; for (var v = 0; v <= max + 1e-9; v += step) out.push(v); return out;
+}
+function short(v){ if (v >= 1e6) return "RM " + (v / 1e6).toFixed(v % 1e6 ? 1 : 0) + "m"; if (v >= 1e3) return "RM " + (v / 1e3).toFixed(v % 1e3 ? 1 : 0) + "k"; return "RM " + Math.round(v); }
+
+/* --- Tool 3: markup vs margin --- */
+(function(){
+  var mode = "price";
+  function render(){
+    var C = num("mmCost"), P;
+    if (mode === "target") { var tm = Math.min(num("mmTarget"), 95); P = tm >= 100 ? 0 : C / (1 - tm / 100); }
+    else P = num("mmPrice");
+    var profit = P - C, markup = C > 0 ? profit / C * 100 : NaN, margin = P > 0 ? profit / P * 100 : NaN;
+    var split = $("#mmSplit");
+    if (P > 0 && profit >= 0) split.innerHTML = '<div class="c" style="flex-basis:' + (C / P * 100) + '%">Cost ' + rm(C) + '</div><div class="p" style="flex-basis:' + (profit / P * 100) + '%">Profit ' + rm(profit) + '</div>';
+    else if (P > 0) split.innerHTML = '<div class="c" style="flex-basis:100%">Cost ' + rm(C) + ' is above the price</div>';
+    else split.innerHTML = "";
+    results($("#mmResults"), [
+      [mode === "target" ? "Price to charge" : "Profit per sale", mode === "target" ? rm(P) : rm(profit), mode === "target" ? "profit " + rm(profit) : "price − cost", profit < 0 ? "neg-text" : ""],
+      ["Markup", pct(markup), "profit ÷ cost"],
+      ["Margin", pct(margin), "profit ÷ price", profit < 0 ? "neg-text" : "pos-text"]
+    ]);
+    $("#mmText").textContent = !(P > 0) ? "Enter a price above zero to compare." : profit < 0
+      ? "You’re selling below cost: every sale loses " + rm(-profit) + "."
+      : "A " + pct(markup, 0) + " markup sounds bigger than it is. Out of every " + rm(P) + " the customer pays, only " + rm(profit) + " (" + pct(margin, 1) + ") stays with you. Margin can never reach 100%, but markup can go as high as you like.";
+  }
+  var rows = [10, 25, 33.3, 50, 75, 100, 150, 200, 300];
+  $("#mmTable").innerHTML = rows.map(function(m){ var price = 100 * (1 + m / 100), mg = (price - 100) / price * 100; return '<tr><td>' + m + '%</td><td>' + mg.toFixed(1) + '%</td><td>' + rm(price) + '</td></tr>'; }).join("");
+  ["mmCost", "mmPrice", "mmTarget"].forEach(function(id){ $("#" + id).addEventListener("input", render); });
+  $$("[data-mm]").forEach(function(b){ b.addEventListener("click", function(){
+    mode = b.getAttribute("data-mm");
+    $$("[data-mm]").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    $("#mmPriceWrap").hidden = mode !== "price"; $("#mmTargetWrap").hidden = mode !== "target"; render();
+  }); });
+  render();
+})();
+
+/* --- Tool 4: P&L --- */
+(function(){
+  // Illustrative only: rough shapes of each kind of business, not any company's real figures.
+  var PRESETS = {
+    restaurant: [2400000, 780000, 1350000, 24, "A sit-down restaurant spends heavily on ingredients and even more on staff and rent, so a good net margin is often in single digits."],
+    cafe: [60000000, 24000000, 27000000, 24, "A café chain buys in bulk and spreads head-office costs across many outlets. Scale helps, but rent at every location adds up."],
+    agency: [8000000, 6000000, 1300000, 24, "A staffing agency’s biggest cost is the people it places, so gross margin is thin. The business works by placing many people efficiently."]
+  };
+  var ids = ["plRev", "plCogs", "plOpex", "plTax"], note = "";
+  function render(){
+    var R = num("plRev"), C = num("plCogs"), O = num("plOpex"), tr = num("plTax") / 100;
+    var gross = R - C, op = gross - O, tax = op > 0 ? op * tr : 0, net = op - tax;
+    waterfall($("#plLedger"), R, "Revenue", "total sales", [
+      {k: "Cost of goods sold", s: "ingredients, stock, direct labour", v: C, cls: "var"},
+      {k: "Operating expenses", s: "rent, salaries, marketing", v: O, cls: "fix", subtotal: {k: "Gross profit", s: "after direct costs"}},
+      {k: "Tax", s: pct(tr * 100, 0) + " of operating profit", v: tax, cls: "fix", subtotal: {k: "Operating profit", s: "after running costs"}}
+    ], "Net profit", "the bottom line", 0);
+    results($("#plResults"), [
+      ["Gross margin", pct(R ? gross / R * 100 : NaN), "gross profit ÷ revenue", gross < 0 ? "neg-text" : ""],
+      ["Operating margin", pct(R ? op / R * 100 : NaN), "operating profit ÷ revenue", op < 0 ? "neg-text" : ""],
+      ["Net margin", pct(R ? net / R * 100 : NaN), "net profit ÷ revenue", net < 0 ? "neg-text" : "pos-text"]
+    ]);
+    var t = R ? "Out of every RM 100 of sales, RM " + (C / R * 100).toFixed(0) + " goes on direct costs, RM " + (O / R * 100).toFixed(0) + " on running the business" + (tax > 0 ? ", RM " + (tax / R * 100).toFixed(0) + " on tax" : "") + ", and RM " + (net / R * 100).toFixed(0) + " is left. " : "";
+    $("#plText").textContent = t + note;
+  }
+  ids.forEach(function(id){ $("#" + id).addEventListener("input", function(){ note = ""; $$("[data-pl]").forEach(function(x){ x.classList.remove("on"); }); render(); }); });
+  $$("[data-pl]").forEach(function(b){ b.addEventListener("click", function(){ var p = PRESETS[b.getAttribute("data-pl")]; ids.forEach(function(id, i){ $("#" + id).value = p[i]; }); note = p[4] + " (Illustrative numbers.)"; $$("[data-pl]").forEach(function(x){ x.classList.toggle("on", x === b); }); render(); }); });
+  render();
+})();
+
+/* --- Tool 5: compound growth --- */
+(function(){
+  var ids = ["cgStart", "cgMonthly", "cgRate", "cgYears"];
+  function render(){
+    var P0 = num("cgStart"), M = num("cgMonthly"), r = num("cgRate") / 100, Y = Math.round(num("cgYears"));
+    $("#cgStartOut").textContent = rm(P0, 0); $("#cgMonthlyOut").textContent = rm(M, 0); $("#cgRateOut").textContent = pct(r * 100, 1); $("#cgYearsOut").textContent = Y;
+    var bal = P0, paid = P0, rows = [], mr = r / 12;
+    for (var y = 1; y <= Y; y++) { for (var m = 0; m < 12; m++) { bal = bal * (1 + mr) + M; paid += M; } rows.push({y: y, bal: bal, paid: paid}); }
+    var growth = bal - paid;
+    results($("#cgResults"), [["After " + Y + (Y === 1 ? " year" : " years"), rm(bal, 0), "", "pos-text"], ["You put in", rm(paid, 0), ""], ["Growth earned", rm(growth, 0), paid ? pct(growth / paid * 100, 0) + " on top" : ""]]);
+    var cross = rows.find(function(x){ return x.bal - x.paid > x.paid; });
+    $("#cgText").textContent = (growth > 0 ? "Growth makes up " + pct(growth / bal * 100, 0) + " of the final amount. " : "With no return, your money only grows by what you add. ") + (cross ? "From year " + cross.y + ", the growth is bigger than everything you paid in." : (r > 0 ? "Keep going for longer and the growth bars will eventually overtake what you put in." : ""));
+    // chart
+    var W = 640, H = 260, L = 62, R = 10, T = 12, B = 30, svg = $("#cgChart");
+    var maxY = rows.length ? rows[rows.length - 1].bal : 1, ticks = niceTicks(maxY || 1, 4); maxY = ticks[ticks.length - 1] || 1;
+    var bw = (W - L - R) / Y, gap = Math.min(4, bw * .25), g = "";
+    function sy(v){ return T + (1 - v / maxY) * (H - T - B); }
+    ticks.forEach(function(v){ g += '<line class="grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + sy(v) + '" y2="' + sy(v) + '"/><text x="' + (L - 8) + '" y="' + (sy(v) + 4) + '" text-anchor="end">' + short(v) + '</text>'; });
+    var every = Y <= 10 ? 1 : Y <= 20 ? 2 : 5;
+    rows.forEach(function(row, i){
+      var x = L + i * bw + gap / 2, w = bw - gap;
+      g += '<rect class="b-own" x="' + x + '" y="' + sy(row.paid) + '" width="' + w + '" height="' + (sy(0) - sy(row.paid)) + '"/>';
+      if (row.bal > row.paid) g += '<rect class="b-grow" x="' + x + '" y="' + sy(row.bal) + '" width="' + w + '" height="' + (sy(row.paid) - sy(row.bal)) + '"/>';
+      if (row.y % every === 0 || row.y === 1) g += '<text x="' + (x + w / 2) + '" y="' + (H - B + 16) + '" text-anchor="middle">' + row.y + '</text>';
+    });
+    g += '<text x="' + (W - R) + '" y="' + (H - 2) + '" text-anchor="end">years</text>';
+    svg.innerHTML = g;
+  }
+  ids.forEach(function(id){ $("#" + id).addEventListener("input", render); });
+  render();
+})();
+
+/* ==================== CONTACT ==================== */
+var REASON_LABEL = { guest: "Tell us about your business and what makes its story interesting", sponsor: "Tell us about your organisation and how you’d like to support the show", other: "Your message" };
+function updateReason(){ var r = ($("input[name=reason]:checked") || {}).value || "guest"; $("#cMsgLbl").textContent = REASON_LABEL[r]; }
+$$("input[name=reason]").forEach(function(i){ i.addEventListener("change", updateReason); });
+$("#emailLine").textContent = CONTACT_EMAIL ? "Prefer email? Write to " + CONTACT_EMAIL : "";
+
+$("#contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var form = e.target, note = $("#cNote"), btn = $("#cSend");
+  var name = $("#cName").value.trim(), email = $("#cEmail").value.trim(), message = $("#cMsg").value.trim();
+  if (!name || !email || !message) { note.className = "note err"; note.textContent = "Please fill in your name, email and message."; return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.className = "note err"; note.textContent = "That email address doesn’t look right. Check it and try again."; return; }
+  btn.disabled = true; note.className = "note"; note.textContent = "Sending…";
+  fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() })
+    .then(function(r){
+      if (!r.ok) throw new Error();
+      btn.disabled = false; note.className = "note ok"; note.textContent = "Thanks, " + name.split(" ")[0] + ". Your message reached the team. We’ll reply by email.";
+      $("#cMsg").value = "";
+    })
+    .catch(function(){ btn.disabled = false; note.className = "note err"; note.textContent = "That didn’t send. Check your connection and try again."; });
+});
+
+/* ==================== BOOT ==================== */
+renderShowLinks();
+renderHomeEps();
+renderEpList();
+var startTool = "cup"; try { var st = localStorage.getItem("btm-tool"); if (st && TOOL_MARGIN[st]) startTool = st; } catch(e){}
+showTool(startTool);
+updateReason();
+go(location.hash.slice(1) || "home", { keepScroll: true });
+
+/* ---------- RSS feed: /api/feed reads the podcast RSS feed live (feed.json is a fallback copy) ---------- */
+function durText(d){
+  var p = String(d).split(":").map(Number); if (p.some(isNaN)) return "";
+  var sec = p.reduce(function(a, v){ return a * 60 + v; }, 0), m = Math.round(sec / 60);
+  return m >= 60 ? Math.floor(m / 60) + " h " + (m % 60) + " min" : m + " min";
+}
+function mergeFeed(feed){
+  if (!feed || !Array.isArray(feed.episodes)) return false;
+  if (feed.show && feed.show.link && !SHOW_LINKS.spotify) SHOW_LINKS.spotify = String(feed.show.link);
+  feed.episodes.forEach(function(f){
+    var n = +f.n; if (!n) return;
+    var ep = EPISODES.find(function(e){ return e.n === n; });
+    if (!ep) {
+      // An episode that is in the feed but not written into the page yet.
+      var sum = (f.summary || []).map(String);
+      ep = { id: "ep" + n, n: n, title: String(f.title || "Episode " + n).replace(/\s*[-–—]\s*Episode\s*\d+\s*$/i, ""), guest: "",
+        cover: "covers/show-art-v2.jpg", industry: "New episode", tool: "cup",
+        blurb: sum[0] || "", summary: sum, topics: [], links: { spotify: "", apple: "", youtube: "" } };
+      EPISODES.push(ep);
+    }
+    if (f.date) ep.release = String(f.date);
+    if (f.duration) ep.duration = String(f.duration);
+    if (f.link && !ep.links.spotify) ep.links.spotify = String(f.link);
+    if (f.audio) ep.audio = String(f.audio);
+    if (Array.isArray(f.summary) && f.summary.length) ep.summary = f.summary.map(String);
+  });
+  EPISODES.sort(function(a, b){ return a.n - b.n; });
+  return true;
+}
+fetch("/api/feed").then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+  .catch(function(){ return fetch("/feed.json").then(function(r){ return r.ok ? r.json() : null; }); })
+  .then(function(feed){
+  if (mergeFeed(feed)) { renderShowLinks(); renderHomeEps(); renderEpList(); if (/^ep\d+$/.test(location.hash.slice(1))) go(location.hash.slice(1)); }
+}).catch(function(){});
+
+loadReviews();
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Comment moderation · Behind the Margins</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{--paper:#15110D;--sheet:#1E1914;--ink:#F4EEE3;--soft:#B4A996;--line:#3A3129;--gold:#F2C14E;--loss:#EE6A57;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:2rem max(16px,env(safe-area-inset-right,0px)) 3rem max(16px,env(safe-area-inset-left,0px))}
+h1{font-family:Georgia,serif;margin:0 0 .25rem}
+p.sub{color:var(--soft);margin:0 0 1.5rem}
+.key{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem}
+input{flex:1;min-width:0;font:inherit;background:var(--sheet);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:.6rem .75rem}
+button{font:inherit;font-weight:600;border:0;border-radius:999px;padding:.6rem 1.1rem;cursor:pointer;background:var(--gold);color:#1A140C}
+button.del{background:transparent;color:var(--loss);border:1px solid var(--loss);padding:.35rem .8rem;font-size:.85rem}
+ul{list-style:none;padding:0;margin:0}
+li{border-top:1px solid var(--line);padding:1rem 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.3rem 1rem}
+.meta{font-size:.85rem;color:var(--soft)}
+.txt{grid-column:1/2;white-space:pre-wrap;overflow-wrap:anywhere}
+.stars{color:var(--gold)}
+#msg{color:var(--soft)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Comment moderation</h1>
+  <p class="sub">Remove any rating or comment that shouldn’t be on the site. Enter the admin key from Netlify to unlock the Remove buttons.</p>
+  <div class="key"><input id="key" type="password" placeholder="Admin key" autocomplete="off" aria-label="Admin key"><button id="save" type="button">Unlock</button></div>
+  <p id="msg" role="status" aria-live="polite">Loading comments…</p>
+  <ul id="list"></ul>
+</main>
+<script>
+var keyIn = document.getElementById("key"), list = document.getElementById("list"), msg = document.getElementById("msg");
+try { keyIn.value = sessionStorage.getItem("btm-admin") || ""; } catch(e){}
+document.getElementById("save").addEventListener("click", function(){ try { sessionStorage.setItem("btm-admin", keyIn.value); } catch(e){} render(window._r || []); msg.textContent = "Unlocked for this tab."; });
+function stars(n){ var s=""; for (var i=1;i<=5;i++) s += i<=n ? "★" : "☆"; return s; }
+function render(rows){
+  window._r = rows; list.innerHTML = "";
+  msg.textContent = rows.length ? rows.length + (rows.length === 1 ? " review" : " reviews") : "No ratings or comments yet.";
+  rows.forEach(function(r){
+    var li = document.createElement("li");
+    var meta = document.createElement("div"); meta.className = "meta";
+    meta.textContent = "Episode " + String(r.ep).replace("ep","") + " · " + (r.name || "A listener") + " · " + new Date(r.at).toLocaleString("en-GB");
+    var st = document.createElement("span"); st.className = "stars"; st.textContent = r.stars ? "  " + stars(r.stars) : ""; meta.appendChild(st);
+    var b = document.createElement("button"); b.className = "del"; b.type = "button"; b.textContent = "Remove"; b.disabled = !keyIn.value;
+    b.addEventListener("click", function(){
+      b.disabled = true;
+      fetch("/api/reviews?id=" + encodeURIComponent(r.id), { method: "DELETE", headers: { "x-admin-key": keyIn.value } })
+        .then(function(res){ return res.json().then(function(j){ if (!res.ok) throw new Error(j.error); render(j.reviews || []); msg.textContent = "Removed."; }); })
+        .catch(function(e){ b.disabled = false; msg.textContent = e.message || "That didn’t work. Try again."; });
+    });
+    var t = document.createElement("div"); t.className = "txt"; t.textContent = r.text || "(rating only)";
+    li.appendChild(meta); li.appendChild(b); li.appendChild(t); list.appendChild(li);
+  });
+}
+fetch("/api/reviews", { cache: "no-store" }).then(function(r){ return r.json(); }).then(function(j){ render(j.reviews || []); })
+  .catch(function(){ msg.textContent = "Couldn’t load comments. Refresh to try again."; });
+</script>
+</body>
+</html>
