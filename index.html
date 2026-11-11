@@ -13,7 +13,7 @@
 <meta property="og:title" content="Behind the Margins: How Businesses Make Money">
 <meta property="og:description" content="A student-led podcast from Kuala Lumpur exploring business models, real numbers and real stories with founders and CEOs.">
 <meta property="og:url" content="https://behindthemargins.com/">
-<meta property="og:image" content="https://behindthemargins.com/covers/hero-wide-v3.jpg">
+<meta property="og:image" content="https://behindthemargins.com/covers/hero-wide-v4.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -191,6 +191,7 @@ h3{font-family:var(--f-display);font-weight:800;font-size:1.3rem;line-height:1.1
 .topics{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0}
 .topics li{display:grid;grid-template-columns:5.6rem minmax(0,1fr);gap:1rem;padding-block:.7rem;border-bottom:1px solid var(--line);font-size:.98rem}
 .topics li span:first-child{font-family:var(--f-data);font-size:.75rem;color:var(--gold-text);padding-top:.2rem}
+.site-link{font-weight:600;color:var(--gold-text);text-decoration:underline;text-underline-offset:3px}
 .tools-link{display:inline-flex;margin-top:1rem;font-weight:600;font-size:.9rem;color:var(--gold-text);text-decoration:none}
 
 .reviews{margin-top:2.2rem;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:clamp(1rem,3vw,1.75rem)}
@@ -403,7 +404,7 @@ img{max-width:100%}
       <div class="hero hero-full">
         <h1 class="sr-only">Behind the Margins: How Businesses Make Money</h1>
         <div class="art">
-          <img class="hero-img" src="covers/hero-wide-v3.jpg" width="1672" height="941" alt="Behind the Margins season one: Firmin (Episode 1, a French restaurant in Malaysia), Secret Recipe (Episode 2), Sabrina Cheng (Episode 3, offshore energy talent) and Josiah Ng (Episode 4, Olympic cyclist and founder), with the hosts on air">
+          <img class="hero-img" src="covers/hero-wide-v4.jpg" width="1672" height="941" alt="Behind the Margins season one: Firmin (Episode 1, a French restaurant in Malaysia), Secret Recipe (Episode 2), Sabrina Cheng (Episode 3, offshore energy talent) and Josiah Ng (Episode 4, Olympic cyclist and founder), with the hosts on air">
           <div class="art-pill">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2Z"/></svg>
             <span>A business &amp; leadership podcast<br>hosted by Rafael, Charmaine &amp; Sasha</span>
@@ -802,16 +803,17 @@ var EPISODES = [
     ],
     guestBio: "Sabrina Cheng has more than 17 years of experience in strategic operations. She is Global Ambassador for Asia-Pacific at the Energy Industries Council (2024–2026), where she promotes UK–Asia energy collaboration and offshore workforce mobility, and advises foreign energy companies working with local talent markets across Asia-Pacific and the Middle East. She holds an MBA in Economics, teaches organisational development and talent strategy as an Adjunct Professor at Zhejiang University of Finance & Economics, and is a member of Rotary International.",
     topics: [["Business","From recruitment practice to talent intelligence"],["Money in","Market scans, workforce analyses and staffing"],["Money out","Specialist people across several markets"],["What’s left","Margins in a business that sells expertise"]],
+    website: { label: "IntelliS Offshore", url: "https://www.intellisoffshore.com" },
     release: "2026-11-16",
     links: { spotify: "", apple: "", youtube: "" } },
-  { id: "ep4", n: 4, title: "Josiah Ng: Turning Sport into High Performance", guest: "With Josiah Ng, Olympic Cyclist & Founder",
-    cover: "covers/ep4.jpg", industry: "Sport & performance", tool: "cg",
-    blurb: "How lessons from elite sport can drive performance in business and in life.",
+  { id: "ep4", n: 4, title: "Behind the Margins of Olympic Academy - A Micro Learning Company", guest: "With Josiah Ng, Olympic Cyclist & Founder of Olympic Academy",
+    cover: "covers/ep4-v2.jpg", industry: "Micro learning", tool: "cg",
+    blurb: "In episode four we talk to Josiah Ng, Olympic cyclist and founder of Olympic Academy, a very new micro learning company built on Olympic athletes’ stories.",
     summary: [
-      "In episode four we talk to Josiah Ng, Olympic cyclist and founder, about what it takes to perform at the highest level and how those lessons carry over into building a business.",
-      "We look at how an athlete turns a sporting career into a company, what discipline, training and small daily improvements have in common with running a business, and how performance shows up in the numbers."
+      "In episode four we talk to Josiah Ng, Olympic cyclist and founder of Olympic Academy. Olympic Academy is a very new micro learning company which incorporates Olympic athletes’ stories of hard work and challenges into effective life lessons.",
+      "We learn about what drove him to create this company, why he thinks it can be effective, what his different possible sources of revenue will be and the details of being in the piloting phase."
     ],
-    topics: [["Business","From Olympic cyclist to founder"],["Money in","Turning a sporting name into a business"],["Money out","The real cost of high performance"],["What’s left","Small gains that add up over time"]],
+    topics: [["Business","Olympic Academy, a micro learning company"],["Money in","His different possible sources of revenue"],["Money out","The details of the piloting phase"],["What’s left","Why he thinks it can be effective"]],
     release: "2026-11-23",
     links: { spotify: "", apple: "", youtube: "" } }
 ];
@@ -943,6 +945,7 @@ function renderEpList(){
     ]);
     ep.summary.forEach(function(p){ body.appendChild(el("p", {text: p})); });
     if (ep.guestBio) { body.appendChild(el("h4", {text: "About the guest"})); body.appendChild(el("p", {text: ep.guestBio})); }
+    if (ep.website) body.appendChild(el("p", {}, [el("a", {class: "site-link", href: ep.website.url, target: "_blank", rel: "noopener", text: "Visit the " + ep.website.label + " website: " + ep.website.url.replace(/^https?:\/\/(www\.)?/, "") + " ↗"})]));
     if (ep.topics && ep.topics.length) { body.appendChild(el("h4", {text: "Following the money"})); body.appendChild(topics); }
     body.appendChild(el("a", {class: "tools-link", href: "#tools", "data-go": "tools", "data-tool": ep.tool, text: "Try the " + TOOL_NAMES[ep.tool] + " tool for this episode →"}));
     body.appendChild(reviewBlock(ep));
