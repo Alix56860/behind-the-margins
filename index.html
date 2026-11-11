@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Behind the Margins</title>
+<title>Behind the Margins: How Businesses Make Money</title>
 <meta name="description" content="Behind the Margins is a student-led podcast from Kuala Lumpur exploring how businesses really make money, through conversations with founders, CEOs and business leaders.">
 <meta name="theme-color" content="#15110D">
 <link rel="canonical" href="https://behindthemargins.com/">
@@ -13,8 +13,18 @@
 <meta property="og:title" content="Behind the Margins: How Businesses Make Money">
 <meta property="og:description" content="A student-led podcast from Kuala Lumpur exploring business models, real numbers and real stories with founders and CEOs.">
 <meta property="og:url" content="https://behindthemargins.com/">
-<meta property="og:image" content="https://behindthemargins.com/covers/hero-wide-v5.jpg">
+<meta property="og:locale" content="en_MY">
+<meta property="og:image" content="https://behindthemargins.com/covers/share-1200x630.jpg">
+<meta property="og:image:secure_url" content="https://behindthemargins.com/covers/share-1200x630.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Behind the Margins: the four season one guests and the three student hosts">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Behind the Margins: How Businesses Make Money">
+<meta name="twitter:description" content="A student-led podcast from Kuala Lumpur exploring business models, real numbers and real stories with founders and CEOs.">
+<meta name="twitter:image" content="https://behindthemargins.com/covers/share-1200x630.jpg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -315,7 +325,8 @@ table.conv th{font-family:var(--f-body);font-size:.72rem;letter-spacing:.14em;te
 .slot b{display:block;font-family:var(--f-display);color:var(--ink);font-size:1.1rem;margin-bottom:.2rem}
 .reasons{display:flex;gap:.5rem;flex-wrap:wrap}
 .reasons label{display:flex;align-items:center;gap:.45rem;border:1px solid var(--line);border-radius:999px;padding:.45rem .9rem;cursor:pointer;font-size:.92rem;color:var(--ink-soft)}
-.reasons input{accent-color:var(--gold)}
+.reasons input{accent-color:var(--gold);width:auto;padding:0;margin:0;flex:none}
+.reasons label{white-space:nowrap}
 .reasons label:has(input:checked){border-color:var(--gold);color:var(--ink)}
 .contact-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:2.5rem;align-items:start}
 .aside-card{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:1.4rem}
@@ -368,6 +379,11 @@ footer nav a:hover{color:var(--gold-text)}
   .lrow{grid-template-columns:minmax(0,6.5rem) minmax(0,1fr) 6.4rem;gap:.5rem}
   .ledger{font-size:.72rem}
   .lrow .name small{display:none}
+  .nav{gap:0;justify-content:space-between}
+  .nav a{letter-spacing:.02em;padding:.45rem .45rem;font-size:.68rem}
+  @media (max-width: 360px){ .nav a{letter-spacing:0;padding:.4rem .32rem;font-size:.64rem} }
+  .host .role{letter-spacing:.05em;font-size:.62rem;line-height:1.5}
+  .reasons label{padding:.55rem .9rem}
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -847,6 +863,7 @@ function go(token, opts){
   if (VIEWS.indexOf(view) < 0) { view = "home"; token = "home"; }
   $$("main[data-view]").forEach(function(m){ m.hidden = m.getAttribute("data-view") !== view; });
   $$(".nav a").forEach(function(a){ if (a.getAttribute("data-go") === view) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  (function(){ var nav = $(".nav"), cur = $(".nav a[aria-current]"); if (nav && cur && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = cur.offsetLeft - (nav.clientWidth - cur.offsetWidth) / 2; })();
   try { history.replaceState(null, "", "#" + token); } catch(e){}
   if (anchor && document.getElementById(anchor)) {
     requestAnimationFrame(function(){ document.getElementById(anchor).scrollIntoView({block: "start"}); });
