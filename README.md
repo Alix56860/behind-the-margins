@@ -15,6 +15,6 @@ Edit the `EPISODES` list near the top of the script in `index.html` to add cover
 
 ## Season one in 3D (`/sphere/`)
 
-The 3D sphere page is built from the Uberdesigner Pro template "wild gallery", which Alix holds a licence for. It may be used on this site only: never resell, share or redistribute it.
+The 3D sphere (embedded on the homepage under "Season one episodes", also full screen at `/sphere/`) is built from the Uberdesigner Pro template "wild gallery", which Alix holds a licence for. It may be used on this site only: never resell, share or redistribute it.
 - Source (outside this repo): edit the cards in `src/data/photos.ts` (title, line under it, text, link) and the images in `public/assets/` (`<slug>.webp` 1920 × 1080 and `<slug>-sm.webp` 1024 × 576).
 - When a new episode comes out, add a card for it, rebuild with `npm run build` and copy `dist/` here as `sphere/`.

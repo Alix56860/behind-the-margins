@@ -157,9 +157,11 @@ h3{font-family:var(--f-display);font-weight:800;font-size:1.3rem;line-height:1.1
 .rel.out .dot{background:var(--good)}
 .guest{font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);line-height:1.5}
 .ep-card p{margin:0;color:var(--ink-soft);font-size:.98rem;line-height:1.5}
-.sphere-link{display:inline-flex;align-items:center;gap:.7rem;margin-top:1.6rem;padding:.7rem 1.1rem;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;transition:border-color .2s}
-.sphere-link:hover{border-color:var(--gold)}
-.sphere-k{background:var(--gold);color:var(--on-gold);font-size:.72rem;font-weight:700;padding:.15rem .55rem;border-radius:999px}
+.sphere-frame{position:relative;aspect-ratio:16/10;margin:1rem 0 .6rem;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--paper)}
+.sphere-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.sphere-note{margin:0 0 2rem;color:var(--ink-soft);font-size:.9rem}
+.sphere-note a{color:var(--gold-text)}
+@media (max-width:700px){.sphere-frame{aspect-ratio:3/4}}
 .ep-card .more{margin-top:auto;font-size:.85rem;font-weight:600;color:var(--ink)}
 .stars-inline{font-size:.85rem;color:var(--ink-soft)}
 .stars-inline b{color:var(--gold-text);letter-spacing:.08em}
@@ -460,8 +462,9 @@ img{max-width:100%}
       <aside class="margin"><b>Season one</b>A new episode<br> every Monday<br> from 2 November</aside>
       <div class="main">
         <h2 id="latest-h">Season one episodes</h2>
+        <div class="sphere-frame"><iframe src="/sphere/" title="Season one in 3D: spin the sphere and open an episode, a host or the money tools" loading="lazy" allow="fullscreen"></iframe></div>
+        <p class="sphere-note">Drag to spin, scroll inside to dive in, click a card. <a href="/sphere/">Open it full screen ↗</a></p>
         <div class="eps" id="homeEps"></div>
-        <a class="sphere-link" href="/sphere/"><span class="sphere-k">New</span> Explore season one in 3D: episodes, hosts and tools on a sphere <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
