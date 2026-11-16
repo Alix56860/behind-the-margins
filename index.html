@@ -425,7 +425,7 @@ img{max-width:100%}
       <div class="hero hero-full">
         <h1 class="sr-only">Behind the Margins: How Businesses Make Money</h1>
         <div class="art">
-          <img class="hero-img" src="covers/hero-wide-v5.jpg" width="1672" height="941" alt="Behind the Margins season one: Firmin (Episode 1, a French restaurant in Malaysia), Secret Recipe (Episode 2), Sabrina Cheng (Episode 3, offshore energy talent) and Josiah Ng (Episode 4, founder of Olympic Academy, a micro learning company), with the hosts on air">
+          <img class="hero-img" src="covers/hero-wide-v6.jpg" width="1672" height="941" alt="Behind the Margins season one: Firmin (Episode 1, a French restaurant in Malaysia), Secret Recipe (Episode 2), Josiah Ng (Episode 3, founder of Olympic Academy, a micro learning company) and Sabrina Cheng (Episode 4, offshore energy talent), with the hosts on air">
           <div class="art-pill">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2Z"/></svg>
             <span>A business &amp; leadership podcast<br>hosted by Rafael, Charmaine &amp; Sasha</span>
@@ -816,27 +816,27 @@ var EPISODES = [
     topics: [["Business","Running a restaurant chain at scale"],["Money in","Dine-in and delivery sales"],["Money out","In-house production and running costs"],["What’s left","Margins for the chain and each restaurant"]],
     release: "2026-11-09",
     links: { spotify: "", apple: "https://podcasts.apple.com/podcast/behind-the-margins/id6829644292?i=1000800704064", youtube: "" } },
-  { id: "ep3", n: 3, title: "IntelliS Offshore: Talent for the Offshore Energy Sector", guest: "With Sabrina Cheng, Founder & CEO",
-    cover: "covers/ep3-v3.jpg", industry: "Offshore energy talent", tool: "mm",
+  { id: "ep3", n: 3, title: "Behind the Margins of Olympic Academy - A Micro Learning Company", guest: "With Josiah Ng, Olympic Cyclist & Founder of Olympic Academy",
+    cover: "covers/ep-josiah-v3.jpg", industry: "Micro learning", tool: "cg",
+    blurb: "In episode three we talk to Josiah Ng, Olympic cyclist and founder of Olympic Academy, a very new micro learning company built on Olympic athletes’ stories.",
+    summary: [
+      "In episode three we talk to Josiah Ng, Olympic cyclist and founder of Olympic Academy. Olympic Academy is a very new micro learning company which incorporates Olympic athletes’ stories of hard work and challenges into effective life lessons.",
+      "We learn about what drove him to create this company, why he thinks it can be effective, what his different possible sources of revenue will be and the details of being in the piloting phase."
+    ],
+    topics: [["Business","Olympic Academy, a micro learning company"],["Money in","His different possible sources of revenue"],["Money out","The details of the piloting phase"],["What’s left","Why he thinks it can be effective"]],
+    release: "2026-11-16", duration: "00:59:42", keepSummary: true,
+    links: { spotify: "https://podcasters.spotify.com/pod/show/raf68/episodes/Behind-the-Margins-of-Olympic-academy---A-micro-learning-company-e3s1p1v", apple: "", youtube: "" } },
+  { id: "ep4", n: 4, title: "IntelliS Offshore: Talent for the Offshore Energy Sector", guest: "With Sabrina Cheng, Founder & CEO",
+    cover: "covers/ep-intellis-v4.jpg", industry: "Offshore energy talent", tool: "mm",
     blurb: "How do you make money from knowing where the right people are? Inside a talent intelligence firm serving the offshore energy sector.",
     summary: [
-      "How do you make money from knowing where the right people are? In episode three, we sit down with Sabrina Cheng, founder and CEO of IntelliS, a specialist talent intelligence firm serving the subsea and offshore energy sector across Southeast Asia and the Middle East.",
+      "How do you make money from knowing where the right people are? In episode four, we sit down with Sabrina Cheng, founder and CEO of IntelliS, a specialist talent intelligence firm serving the subsea and offshore energy sector across Southeast Asia and the Middle East.",
       "Sabrina saw a gap in her industry: offshore energy companies were hiring through transactional staffing, when what they really needed was reliable information on who is available, where, and when. We explore how IntelliS grew from a regional recruitment practice into a multi-market business serving operators of floating oil and gas platforms, international engineering contractors and national oil companies.",
       "We unpack what a people business actually sells, from talent market scans and workforce gap analyses to staffing, how it prices that work, what its biggest costs are, and what is left once the bills are paid."
     ],
     guestBio: "Sabrina Cheng has more than 17 years of experience in strategic operations. She is Global Ambassador for Asia-Pacific at the Energy Industries Council (2024–2026), where she promotes UK–Asia energy collaboration and offshore workforce mobility, and advises foreign energy companies working with local talent markets across Asia-Pacific and the Middle East. She holds an MBA in Economics, teaches organisational development and talent strategy as an Adjunct Professor at Zhejiang University of Finance & Economics, and is a member of Rotary International.",
     topics: [["Business","From recruitment practice to talent intelligence"],["Money in","Market scans, workforce analyses and staffing"],["Money out","Specialist people across several markets"],["What’s left","Margins in a business that sells expertise"]],
     website: { label: "IntelliS Offshore", url: "https://www.intellisoffshore.com" },
-    release: "2026-11-16",
-    links: { spotify: "", apple: "", youtube: "" } },
-  { id: "ep4", n: 4, title: "Behind the Margins of Olympic Academy - A Micro Learning Company", guest: "With Josiah Ng, Olympic Cyclist & Founder of Olympic Academy",
-    cover: "covers/ep4-v2.jpg", industry: "Micro learning", tool: "cg",
-    blurb: "In episode four we talk to Josiah Ng, Olympic cyclist and founder of Olympic Academy, a very new micro learning company built on Olympic athletes’ stories.",
-    summary: [
-      "In episode four we talk to Josiah Ng, Olympic cyclist and founder of Olympic Academy. Olympic Academy is a very new micro learning company which incorporates Olympic athletes’ stories of hard work and challenges into effective life lessons.",
-      "We learn about what drove him to create this company, why he thinks it can be effective, what his different possible sources of revenue will be and the details of being in the piloting phase."
-    ],
-    topics: [["Business","Olympic Academy, a micro learning company"],["Money in","His different possible sources of revenue"],["Money out","The details of the piloting phase"],["What’s left","Why he thinks it can be effective"]],
     release: "2026-11-23",
     links: { spotify: "", apple: "", youtube: "" } }
 ];
@@ -1372,7 +1372,7 @@ function mergeFeed(feed){
     if (f.duration) ep.duration = String(f.duration);
     if (f.link && !ep.links.spotify) ep.links.spotify = String(f.link);
     if (f.audio) ep.audio = String(f.audio);
-    if (Array.isArray(f.summary) && f.summary.length) ep.summary = f.summary.map(String);
+    if (!ep.keepSummary && Array.isArray(f.summary) && f.summary.length) ep.summary = f.summary.map(String);
   });
   EPISODES.sort(function(a, b){ return a.n - b.n; });
   return true;
